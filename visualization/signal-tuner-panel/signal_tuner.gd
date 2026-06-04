@@ -1,4 +1,4 @@
-extends Panel
+extends Node
 
 @export var frequency_data_ui: FrequencyDataTuner
 @export var wave_form_draw: WaveFormRenderer

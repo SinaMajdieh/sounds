@@ -23,7 +23,7 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
 
-[node name="CosSignalGroups" type="PanelContainer" unique_id=976307911 node_paths=PackedStringArray("waveform_draw", "frequency_data_tuners", "sampling_rate_label", "duration_label")]
+[node name="SignalSynthesizerPanel" type="PanelContainer" unique_id=976307911 node_paths=PackedStringArray("waveform_draw", "frequency_data_tuners", "sampling_rate_label", "duration_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

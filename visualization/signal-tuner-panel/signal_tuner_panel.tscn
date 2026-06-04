@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3eke133pfjam"]
 
-[ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal-tuner-panel/signal_tuner_panel.gd" id="1_2s88k"]
+[ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal-tuner-panel/signal_tuner.gd" id="1_2s88k"]
 [ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="1_x5ub1"]
 [ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_xnyad"]
 [ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_5sq1a"]

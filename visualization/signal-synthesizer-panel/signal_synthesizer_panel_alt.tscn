@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://simdno7bugl6"]
+
+[ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel/signal_synthesizer_panel.gd" id="1_bqf8k"]
+[ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="2_bqf8k"]
+[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_s7isq"]
+[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_8ut1w"]
+[ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal-tuner-panel/signal_tuner.gd" id="5_s7isq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_htvx8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjn7l"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4w7cj"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tq8b3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7isq"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ut1w"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7pcg"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rysb"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+
+[node name="SignalSynthesizerPanel" type="PanelContainer" unique_id=976307911 node_paths=PackedStringArray("waveform_draw", "frequency_data_tuners", "sampling_rate_label", "duration_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_htvx8")
+script = ExtResource("1_bqf8k")
+waveform_draw = NodePath("MarginContainer/HLayout/RightPanel/Layout/WaveFormContainer/WaveFormUI")
+frequency_data_tuners = [NodePath("MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner"), NodePath("MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2"), NodePath("MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3")]
+sampling_rate_label = NodePath("MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer/SampleRate")
+duration_label = NodePath("MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer/Duratuion")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2000001698]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HLayout" type="HBoxContainer" parent="MarginContainer" unique_id=1192847859]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LeftPanel" type="PanelContainer" parent="MarginContainer/HLayout" unique_id=1384254141]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hjn7l")
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer/HLayout/LeftPanel" unique_id=1131912000]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Info" type="PanelContainer" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=514968377]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4w7cj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HLayout/LeftPanel/Layout/Info" unique_id=14328677]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SampleRateLabel" type="Label" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=1679245337]
+layout_mode = 2
+text = "Sample Rate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SampleRate" type="Label" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=90352357]
+layout_mode = 2
+text = "14600"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DurationLabel" type="Label" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=1575344076]
+layout_mode = 2
+text = "Duration"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Duratuion" type="Label" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=1812029522]
+layout_mode = 2
+text = "14600"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FrequencyDataTuner" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=646339270 instance=ExtResource("2_bqf8k")]
+layout_mode = 2
+
+[node name="FrequencyDataTuner2" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=1600068794 instance=ExtResource("2_bqf8k")]
+layout_mode = 2
+
+[node name="FrequencyDataTuner3" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=1780052298 instance=ExtResource("2_bqf8k")]
+layout_mode = 2
+
+[node name="RightPanel" type="PanelContainer" parent="MarginContainer/HLayout" unique_id=567192730]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tq8b3")
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer/HLayout/RightPanel" unique_id=1346900704]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WaveFormContainer" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=1916891733 node_paths=PackedStringArray("wave_form_draw")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s7isq")
+script = ExtResource("2_s7isq")
+wave_form_draw = NodePath("WaveFormUI")
+margin = Dictionary[String, float]({
+"bottom": 12.0,
+"left": 3.0,
+"right": 3.0,
+"top": 12.0
+})
+
+[node name="WaveFormUI" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormContainer" unique_id=1805613163]
+script = ExtResource("3_8ut1w")
+draw_style = 0
+normalize = true
+color = Color(0.7058824, 0.74509805, 0.99607843, 1)
+line_width = 4.0
+metadata/_custom_type_script = "uid://igy184lmmm8g"
+
+[node name="WaveFormView" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=493573092 node_paths=PackedStringArray("wave_form_draw")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ut1w")
+script = ExtResource("2_s7isq")
+wave_form_draw = NodePath("WaveFormRenderer")
+margin = Dictionary[String, float]({
+"bottom": 12.0,
+"left": 3.0,
+"right": 3.0,
+"top": 12.0
+})
+
+[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormView" unique_id=460972675]
+script = ExtResource("3_8ut1w")
+draw_style = 0
+color = Color(0.5372549, 0.7058824, 0.98039216, 1)
+metadata/_custom_type_script = "uid://igy184lmmm8g"
+
+[node name="WaveFormView2" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=417776651 node_paths=PackedStringArray("wave_form_draw")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7pcg")
+script = ExtResource("2_s7isq")
+wave_form_draw = NodePath("WaveFormRenderer")
+margin = Dictionary[String, float]({
+"bottom": 12.0,
+"left": 3.0,
+"right": 3.0,
+"top": 12.0
+})
+
+[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormView2" unique_id=345034548]
+script = ExtResource("3_8ut1w")
+draw_style = 0
+metadata/_custom_type_script = "uid://igy184lmmm8g"
+
+[node name="WaveFormView3" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=1882953152 node_paths=PackedStringArray("wave_form_draw")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3rysb")
+script = ExtResource("2_s7isq")
+wave_form_draw = NodePath("WaveFormRenderer")
+margin = Dictionary[String, float]({
+"bottom": 12.0,
+"left": 3.0,
+"right": 3.0,
+"top": 12.0
+})
+
+[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormView3" unique_id=764364201]
+script = ExtResource("3_8ut1w")
+draw_style = 0
+color = Color(0.9529412, 0.54509807, 0.65882355, 1)
+metadata/_custom_type_script = "uid://igy184lmmm8g"
+
+[node name="SignalTunerInterface" type="Node" parent="." unique_id=1538820232]
+
+[node name="Tuner1" type="Node" parent="SignalTunerInterface" unique_id=1609548221 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+script = ExtResource("5_s7isq")
+frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner")
+wave_form_draw = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveFormView/WaveFormRenderer")
+
+[node name="Tuner2" type="Node" parent="SignalTunerInterface" unique_id=1036929505 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+script = ExtResource("5_s7isq")
+frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2")
+wave_form_draw = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveFormView2/WaveFormRenderer")
+
+[node name="Tuner3" type="Node" parent="SignalTunerInterface" unique_id=740556306 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+script = ExtResource("5_s7isq")
+frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3")
+wave_form_draw = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveFormView3/WaveFormRenderer")

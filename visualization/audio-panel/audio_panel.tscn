@@ -29,7 +29,7 @@ script = ExtResource("1_xb8ug")
 wave_form_draw = NodePath("WaveFormView/WaveFormRenderer")
 audio_name_label = NodePath("Name")
 audio_info_label = NodePath("Info")
-wav_path = "C:/Users/Sina/Documents/Coding/Godot projects/sounds/assets/hello.wav"
+wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/hello.wav"
 
 [node name="Name" type="Label" parent="." unique_id=384419220]
 layout_mode = 1
@@ -64,6 +64,5 @@ wave_form_draw = NodePath("WaveFormRenderer")
 [node name="WaveFormRenderer" type="Node2D" parent="WaveFormView" unique_id=1398639188]
 position = Vector2(0, -194.40001)
 script = ExtResource("3_lsasv")
-draw_style = 0
 normalize = true
 metadata/_custom_type_script = "uid://igy184lmmm8g"
