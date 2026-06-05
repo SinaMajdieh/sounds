@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://bc2mpbmj4m41q"]
+
+[ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel/signal_synthesizer_panel.gd" id="1_pu6af"]
+[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_g1bt8"]
+[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_omnk1"]
+[ext_resource type="PackedScene" uid="uid://c3eke133pfjam" path="res://visualization/signal-tuner-panel/signal_tuner_panel.tscn" id="4_3pwpp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_htvx8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xho1"]
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sq1a"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+
+[node name="CosSignalGroups" type="PanelContainer" unique_id=976307911 node_paths=PackedStringArray("waveform_draw", "frequency_data_tuners", "sampling_rate_label", "duration_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_htvx8")
+script = ExtResource("1_pu6af")
+waveform_draw = NodePath("SignalTunerPanels/SynthesizedPanel/Layout/WaveFormContainer/WaveFormUI")
+frequency_data_tuners = [NodePath("SignalTunerPanels/SignalTunerPanel1/MarginContainer/Layout/FrequencyDataTuner"), NodePath("SignalTunerPanels/SignalTunerPanel2/MarginContainer/Layout/FrequencyDataTuner"), NodePath("SignalTunerPanels/SignalTunerPanel3/MarginContainer/Layout/FrequencyDataTuner")]
+sampling_rate_label = NodePath("SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels/SampleRate")
+duration_label = NodePath("SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels/Duratuion")
+
+[node name="SignalTunerPanels" type="VBoxContainer" parent="." unique_id=1900180014]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="SynthesizedPanel" type="MarginContainer" parent="SignalTunerPanels" unique_id=1909495582]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Layout" type="HBoxContainer" parent="SignalTunerPanels/SynthesizedPanel" unique_id=132239220]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="InfoPanel" type="Panel" parent="SignalTunerPanels/SynthesizedPanel/Layout" unique_id=820957120]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7xho1")
+
+[node name="Labels" type="VBoxContainer" parent="SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel" unique_id=1176495930]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -56.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SampleRateLabel" type="Label" parent="SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels" unique_id=1157219023]
+layout_mode = 2
+text = "Sample Rate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SampleRate" type="Label" parent="SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels" unique_id=1020528579]
+layout_mode = 2
+text = "14600"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DurationLabel" type="Label" parent="SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels" unique_id=1303387634]
+layout_mode = 2
+text = "Duration"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Duratuion" type="Label" parent="SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels" unique_id=1403070134]
+layout_mode = 2
+text = "14600"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveFormContainer" type="Panel" parent="SignalTunerPanels/SynthesizedPanel/Layout" unique_id=127050014 node_paths=PackedStringArray("wave_form_draw")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5sq1a")
+script = ExtResource("2_g1bt8")
+wave_form_draw = NodePath("WaveFormUI")
+margin = Dictionary[String, float]({
+"bottom": 12.0,
+"left": 3.0,
+"right": 3.0,
+"top": 12.0
+})
+
+[node name="WaveFormUI" type="Node2D" parent="SignalTunerPanels/SynthesizedPanel/Layout/WaveFormContainer" unique_id=1644153981]
+script = ExtResource("3_omnk1")
+draw_style = 0
+normalize = true
+color = Color(0.7058824, 0.74509805, 0.99607843, 1)
+line_width = 4.0
+metadata/_custom_type_script = "uid://igy184lmmm8g"
+
+[node name="SignalTunerPanel1" parent="SignalTunerPanels" unique_id=204177025 instance=ExtResource("4_3pwpp")]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WaveFormRenderer" parent="SignalTunerPanels/SignalTunerPanel1/MarginContainer/Layout/WaveFormView" parent_id_path=PackedInt32Array(204177025, 96683617) index="0" unique_id=2139652097]
+color = Color(0.5372549, 0.7058824, 0.98039216, 1)
+
+[node name="SignalTunerPanel2" parent="SignalTunerPanels" unique_id=144055243 instance=ExtResource("4_3pwpp")]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SignalTunerPanel3" parent="SignalTunerPanels" unique_id=687009643 instance=ExtResource("4_3pwpp")]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WaveFormRenderer" parent="SignalTunerPanels/SignalTunerPanel3/MarginContainer/Layout/WaveFormView" parent_id_path=PackedInt32Array(687009643, 96683617) index="0" unique_id=2139652097]
+color = Color(0.9529412, 0.54509807, 0.65882355, 1)
+
+[editable path="SignalTunerPanels/SignalTunerPanel1"]
+[editable path="SignalTunerPanels/SignalTunerPanel2"]
+[editable path="SignalTunerPanels/SignalTunerPanel3"]

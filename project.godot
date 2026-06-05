@@ -13,11 +13,17 @@ config_version=5
 config/name="Sounds"
 run/main_scene="uid://bgrll5wivihuk"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://visualization/": "green"
+}
 
 [gui]
 
@@ -31,4 +37,6 @@ theme/custom_font="uid://krgwjx6e2src"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+anti_aliasing/quality/msaa_2d=3
 environment/defaults/default_clear_color=Color(0.11764706, 0.11764706, 0.18039216, 1)
+anti_aliasing/quality/use_taa=true

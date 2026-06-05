@@ -1,4 +1,4 @@
-class_name WaveFormUI
+class_name WaveFormRenderer
 extends Node2D
 
 enum DrawStyle {
@@ -8,7 +8,7 @@ enum DrawStyle {
 
 @export var resolution: int = 1
 @export var draw_style: DrawStyle = DrawStyle.BARS
-@export var scale_height: bool = false
+@export var normalize: bool = false
 @export var color: Color = Color("a6e3a1")
 @export var line_width: float = 2.0
 @export var transition: Tween.TransitionType = Tween.TRANS_SINE
@@ -44,9 +44,8 @@ func set_display(width: float, height: float) -> void:
 func set_samples(samples: PackedFloat32Array) -> void:
 	_samples = samples
 	_num_samples = ceili(samples.size() / float(resolution))
-	print("Number of samples: %d" % _num_samples)
 	_max_amplitude = max.callv(samples)
-	if _max_amplitude == 0.0 or not scale_height:
+	if _max_amplitude == 0.0:
 		_max_amplitude = 1.0
 
 
@@ -101,7 +100,9 @@ func _draw_bars() -> void:
 	for i: int in range(0, num_visible_samples):
 		var sample_index: int = i * resolution
 		var x: float = float(i) / float(_num_samples - 1) * _width
-		var amplitude: float = abs(_samples[sample_index]) / _max_amplitude * _center_y
+		var amplitude: float = abs(_samples[sample_index])
+		if normalize and _max_amplitude != 0.0:
+			amplitude = (amplitude / _max_amplitude) * _center_y
 
 		points[i * 2] = Vector2(x, _center_y + amplitude)
 		points[i * 2 + 1] = Vector2(x, _center_y - amplitude)
@@ -118,10 +119,16 @@ func _draw_continuous() -> void:
 	var points: PackedVector2Array = PackedVector2Array()
 	points.resize(num_visible_samples)
 
-	for i: int in range(0, num_visible_samples):
+	for i: int in range(num_visible_samples):
 		var sample_index: int = i * resolution
 		var x: float = float(i) / float(_num_samples - 1) * _width
-		var y: float = _center_y - (_samples[sample_index] / _max_amplitude) * _center_y
+		var y: float = _samples[sample_index]
+
+		if normalize and _max_amplitude != 0.0:
+			y = (y / _max_amplitude) * _center_y
+
+		y = _center_y - y
 		points[i] = Vector2(x, y)
 
 	draw_polyline(points, color, line_width)
+

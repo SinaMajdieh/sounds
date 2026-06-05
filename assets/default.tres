@@ -1,4 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://bboh3wm7pvhpn"]
 
+[ext_resource type="FontFile" uid="uid://kklcm00sk3nk" path="res://assets/fonts/Dank Mono/DankMono-Regular.ttf" id="1_c8gvj"]
+
 [resource]
+default_font = ExtResource("1_c8gvj")
+default_font_size = 20
 Label/colors/font_color = Color(0.8039216, 0.8392157, 0.95686275, 1)

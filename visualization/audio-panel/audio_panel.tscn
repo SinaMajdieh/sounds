@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bgrll5wivihuk"]
 
-[ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://audio_panel.gd" id="1_xb8ug"]
-[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://wav_form_container.gd" id="2_s8bhq"]
-[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://wave_form_ui.gd" id="3_lsasv"]
+[ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://visualization/audio-panel/audio_panel.gd" id="1_xb8ug"]
+[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_s8bhq"]
+[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_lsasv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdcma"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -26,10 +26,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_xb8ug")
-wave_form_draw = NodePath("WaveFormUIPanel/WaveFormUI")
+wave_form_draw = NodePath("WaveFormView/WaveFormRenderer")
 audio_name_label = NodePath("Name")
 audio_info_label = NodePath("Info")
-wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (2).wav"
+wav_path = "C:/Users/Sina/Documents/Coding/Godot projects/sounds/assets/hello.wav"
 
 [node name="Name" type="Label" parent="." unique_id=384419220]
 layout_mode = 1
@@ -51,7 +51,7 @@ theme_override_font_sizes/font_size = 18
 text = "Number of Samples: 
 Sampleing Rate: "
 
-[node name="WaveFormUIPanel" type="Panel" parent="." unique_id=266088613 node_paths=PackedStringArray("wave_form_draw")]
+[node name="WaveFormView" type="Panel" parent="." unique_id=266088613 node_paths=PackedStringArray("wave_form_draw")]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1
@@ -59,11 +59,11 @@ anchor_right = 1.0
 anchor_bottom = 0.9
 theme_override_styles/panel = SubResource("StyleBoxFlat_hdcma")
 script = ExtResource("2_s8bhq")
-wave_form_draw = NodePath("WaveFormUI")
+wave_form_draw = NodePath("WaveFormRenderer")
 
-[node name="WaveFormUI" type="Node2D" parent="WaveFormUIPanel" unique_id=1398639188]
+[node name="WaveFormRenderer" type="Node2D" parent="WaveFormView" unique_id=1398639188]
 position = Vector2(0, -194.40001)
 script = ExtResource("3_lsasv")
-resolution = 400
-scale_height = true
+draw_style = 0
+normalize = true
 metadata/_custom_type_script = "uid://igy184lmmm8g"

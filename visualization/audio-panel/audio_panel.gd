@@ -1,6 +1,6 @@
 extends Control
 
-@export var wave_form_draw: WaveFormUI
+@export var wave_form_draw: WaveFormRenderer
 @export var audio_name_label: Label
 @export var audio_info_label: Label
 @export_global_file("*.wav") var wav_path: String
@@ -13,6 +13,7 @@ func _ready() -> void:
 	audio = WavReader.read(wav_file)
 	wav_file.close()
 
+
 func _display_audio() -> void:
 	wave_form_draw.animate_draw(audio.samples, 1.618)
 	audio_name_label.text = wav_path
@@ -21,6 +22,7 @@ func _display_audio() -> void:
 		audio.samples.size(),
 		audio.samples.size() / float(audio.sample_rate)
 	]
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
