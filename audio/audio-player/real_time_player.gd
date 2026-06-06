@@ -44,6 +44,10 @@ func stop() -> void:
 	playing = false
 
 
+func is_playing() -> bool:
+	return playing
+
+
 func _process(_delta: float) -> void:
 	if not playing:
 		return

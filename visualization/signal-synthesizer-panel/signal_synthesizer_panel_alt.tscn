@@ -116,7 +116,7 @@ text = "14600"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=687959810 node_paths=PackedStringArray("audio_player", "frequency_tuners")]
+[node name="Playback" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=687959810 node_paths=PackedStringArray("frequency_tuners", "audio_player")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -135,8 +135,8 @@ alignment = 1
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_3rysb")
-audio_player = NodePath("../../../../../../../RealtimeAudioPlayer")
 frequency_tuners = [NodePath("../../../FrequencyDataTuner"), NodePath("../../../FrequencyDataTuner2"), NodePath("../../../FrequencyDataTuner3")]
+audio_player = NodePath("../../../../../../../RealtimeAudioPlayer")
 toggled_icon = ExtResource("4_5vj2u")
 untoggled_icon = ExtResource("2_be1sb")
 
@@ -144,7 +144,7 @@ untoggled_icon = ExtResource("2_be1sb")
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(646339270, 2146417936) index="3" unique_id=1123367884 node_paths=PackedStringArray("audio_player", "frequency_tuner")]
+[node name="Playback" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(646339270, 2146417936) index="3" unique_id=1123367884 node_paths=PackedStringArray("frequency_tuner", "audio_player")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -163,8 +163,8 @@ alignment = 1
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_3rysb")
-audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
 frequency_tuner = NodePath("../../..")
+audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
 toggled_icon = ExtResource("4_5vj2u")
 untoggled_icon = ExtResource("2_be1sb")
 
@@ -172,7 +172,7 @@ untoggled_icon = ExtResource("2_be1sb")
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1600068794, 2146417936) index="3" unique_id=1610212057 node_paths=PackedStringArray("audio_player", "frequency_tuner")]
+[node name="Playback" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1600068794, 2146417936) index="3" unique_id=1610212057 node_paths=PackedStringArray("frequency_tuner", "audio_player")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -191,8 +191,8 @@ alignment = 1
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_3rysb")
-audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
 frequency_tuner = NodePath("../../..")
+audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
 toggled_icon = ExtResource("4_5vj2u")
 untoggled_icon = ExtResource("2_be1sb")
 
@@ -200,7 +200,7 @@ untoggled_icon = ExtResource("2_be1sb")
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1780052298, 2146417936) index="3" unique_id=877836941 node_paths=PackedStringArray("audio_player", "frequency_tuner")]
+[node name="Playback" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1780052298, 2146417936) index="3" unique_id=877836941 node_paths=PackedStringArray("frequency_tuner", "audio_player")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -219,8 +219,8 @@ alignment = 1
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_3rysb")
-audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
 frequency_tuner = NodePath("../../..")
+audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
 toggled_icon = ExtResource("4_5vj2u")
 untoggled_icon = ExtResource("2_be1sb")
 

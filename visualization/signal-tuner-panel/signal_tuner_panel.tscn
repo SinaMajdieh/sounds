@@ -2,10 +2,19 @@
 
 [ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal-tuner-panel/signal_tuner.gd" id="1_2s88k"]
 [ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="1_x5ub1"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="3_2whvl"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_fkqto"]
+[ext_resource type="Script" uid="uid://cb841aim8i4r" path="res://visualization/signal-synthesizer-panel/play_signal_button.gd" id="4_klnww"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_fkqto"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="5_g6mbo"]
+[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://audio/audio-player/real_time_player.gd" id="8_rwon8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2s88k"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_istte"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vkini"]
+allow_unpress = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sq1a"]
 content_margin_left = 3.0
@@ -18,6 +27,8 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hqswo"]
 
 [sub_resource type="Resource" id="Resource_hqswo"]
 script = ExtResource("5_fkqto")
@@ -48,10 +59,36 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Layout" type="HBoxContainer" parent="MarginContainer" unique_id=2028982350]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 0
 
 [node name="FrequencyDataTuner" parent="MarginContainer/Layout" unique_id=646339270 instance=ExtResource("1_x5ub1")]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+
+[node name="Playback" type="CheckButton" parent="MarginContainer/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(646339270, 2146417936) index="3" unique_id=689463971 node_paths=PackedStringArray("frequency_tuner", "audio_player")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_icons/checked = SubResource("ImageTexture_istte")
+theme_override_icons/unchecked = SubResource("ImageTexture_istte")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_istte")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_istte")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_istte")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_istte")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_istte")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_istte")
+button_group = SubResource("ButtonGroup_vkini")
+icon = ExtResource("3_2whvl")
+flat = true
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_klnww")
+frequency_tuner = NodePath("../../..")
+audio_player = NodePath("../../../../../../RealtimeAudioPlayer")
+toggled_icon = ExtResource("5_g6mbo")
+untoggled_icon = ExtResource("3_2whvl")
 
 [node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout" unique_id=1864510615]
 clip_contents = true
@@ -62,7 +99,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5sq1a")
 
 [node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/WaveformView" unique_id=1812452115]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hqswo")
 script = ExtResource("4_fkqto")
 strategy = SubResource("Resource_hqswo")
+
+[node name="RealtimeAudioPlayer" type="Node" parent="." unique_id=1100886066]
+script = ExtResource("8_rwon8")
+buffer_length = 0.1
+metadata/_custom_type_script = "uid://c50x5b8qoigj"
 
 [editable path="MarginContainer/Layout/FrequencyDataTuner"]

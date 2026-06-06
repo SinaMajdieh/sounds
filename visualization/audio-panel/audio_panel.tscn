@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://visualization/audio-panel/audio_panel.gd" id="1_xb8ug"]
 [ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_bkc7y"]
-[ext_resource type="Script" uid="uid://cnxjxtwgnhclj" path="res://UI/toggle_icon_button.gd" id="3_bm4xp"]
+[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://UI/playback_button.gd" id="3_bm4xp"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="3_r5ssu"]
 [ext_resource type="Shader" uid="uid://cjkek3wuwq4ye" path="res://visualization/audio-playback-cursor/bloom/bloom_trail.gdshader" id="4_bkc7y"]
 [ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="4_qbnmo"]
@@ -78,7 +78,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lpmn8")
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Play" type="CheckButton" parent="MarginContainer/Layout/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1613822621]
+[node name="Play" type="CheckButton" parent="MarginContainer/Layout/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1613822621 node_paths=PackedStringArray("audio_player")]
 modulate = Color(0.8039216, 0.8392157, 0.95686275, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -87,6 +87,7 @@ icon = ExtResource("6_lpmn8")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_bm4xp")
+audio_player = NodePath("../../../../../../SampleBufferPlayer")
 toggled_icon = ExtResource("4_qbnmo")
 untoggled_icon = ExtResource("6_lpmn8")
 

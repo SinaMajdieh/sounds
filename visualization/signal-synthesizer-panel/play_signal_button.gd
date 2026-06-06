@@ -1,14 +1,12 @@
-extends ToggleIconButton
+extends PlaybackButton
 
 @export_subgroup("Audio")
-@export var audio_player: RealtimeAudioPlayer
 @export var frequency_tuner: FrequencyDataTuner
 
 var oscillator: CosGenerator
 
 func _ready() -> void:
 	super()
-	toggled.connect(_on_toggled)
 	frequency_tuner.frequency_data_changed.connect(_on_frequency_data_changed)
 	oscillator = CosGenerator.new()
 	oscillator.set_waves([frequency_tuner.frequency_data], 44100)
