@@ -7,7 +7,7 @@ signal frequency_data_changed(new_data: FrequencyData)
 @export var amplitude_spinbox: SpinBox
 @export var phase_spinbox: SpinBox
 
-var frequency_data: FrequencyData = FrequencyData.new(150, 10.0, 0)
+var frequency_data: FrequencyData = FrequencyData.new(150, 0.1, 0)
 
 
 func _ready() -> void:

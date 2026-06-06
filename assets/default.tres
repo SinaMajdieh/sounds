@@ -1,8 +1,51 @@
 [gd_resource type="Theme" format=3 uid="uid://bboh3wm7pvhpn"]
 
-[ext_resource type="FontFile" uid="uid://kklcm00sk3nk" path="res://assets/fonts/Dank Mono/DankMono-Regular.ttf" id="1_c8gvj"]
+[ext_resource type="FontFile" uid="uid://dbf5j63q5nd32" path="res://assets/fonts/SF Pro/SF-Pro.ttf" id="1_c8gvj"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_c8gvj"]
+
+[sub_resource type="FontVariation" id="FontVariation_c8gvj"]
+base_font = ExtResource("1_c8gvj")
+variation_opentype = {
+1869640570: 28,
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8gvj"]
+content_margin_left = 3.0
+content_margin_top = 12.0
+content_margin_right = 3.0
+content_margin_bottom = 12.0
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_nrysy"]
+base_font = ExtResource("1_c8gvj")
+variation_opentype = {
+1869640570: 28,
+2003265652: 600
+}
 
 [resource]
-default_font = ExtResource("1_c8gvj")
+default_font = SubResource("FontVariation_nrysy")
 default_font_size = 20
+FlatCheckButtom/base_type = &"CheckButton"
+FlatCheckButtom/icons/checked = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/checked_disabled = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/checked_disabled_mirrored = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/checked_mirrored = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/icon = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/unchecked = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/unchecked_disabled = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/unchecked_disabled_mirrored = SubResource("ImageTexture_c8gvj")
+FlatCheckButtom/icons/unchecked_mirrored = SubResource("ImageTexture_c8gvj")
 Label/colors/font_color = Color(0.8039216, 0.8392157, 0.95686275, 1)
+Label/colors/font_outline_color = Color(0.8039216, 0.8392157, 0.95686275, 1)
+Label/font_sizes/font_size = 30
+Label/fonts/font = SubResource("FontVariation_c8gvj")
+WaveformView/base_type = &"PanelContainer"
+WaveformView/styles/panel = SubResource("StyleBoxFlat_c8gvj")

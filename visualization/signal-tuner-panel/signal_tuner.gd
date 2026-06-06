@@ -1,7 +1,7 @@
 extends Node
 
 @export var frequency_data_ui: FrequencyDataTuner
-@export var wave_form_draw: WaveFormRenderer
+@export var waveform_renderer: WaveformRenderer
 
 
 func _ready() -> void:
@@ -10,5 +10,5 @@ func _ready() -> void:
 
 
 func _on_frequency_data_changed(new_data: FrequencyData) -> void:
-	var samples: PackedFloat32Array = SignalGen.generate_signal([new_data], 16384, 0.1)
-	wave_form_draw.draw(samples)
+	var samples: PackedFloat32Array = SignalGen.generate_signal([new_data], 44100, 0.1)
+	waveform_renderer.draw(samples)

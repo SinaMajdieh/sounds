@@ -4,7 +4,7 @@ extends PanelContainer
 @export var sampling_rate: int = 44100
 @export var duration: float = 0.1
 @export_subgroup("UI Elements")
-@export var waveform_draw: WaveFormRenderer
+@export var waveform_draw: WaveformRenderer
 @export var frequency_data_tuners: Array[FrequencyDataTuner] = []
 @export var sampling_rate_label: Label
 @export var duration_label: Label

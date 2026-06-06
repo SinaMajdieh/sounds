@@ -1,23 +1,36 @@
 [gd_scene format=3 uid="uid://bgrll5wivihuk"]
 
 [ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://visualization/audio-panel/audio_panel.gd" id="1_xb8ug"]
-[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_s8bhq"]
-[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_lsasv"]
+[ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_bkc7y"]
+[ext_resource type="Script" uid="uid://cnxjxtwgnhclj" path="res://UI/toggle_icon_button.gd" id="3_bm4xp"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="3_r5ssu"]
+[ext_resource type="Shader" uid="uid://cjkek3wuwq4ye" path="res://visualization/audio-playback-cursor/bloom/bloom_trail.gdshader" id="4_bkc7y"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="4_qbnmo"]
+[ext_resource type="Script" uid="uid://cildu7twcmhx3" path="res://audio/audio-player/sample_buffer_player.gd" id="4_qoff4"]
+[ext_resource type="PackedScene" uid="uid://bcpqc1ohrfgqx" path="res://visualization/audio-playback-cursor/audio_playback_cursor.tscn" id="4_r5ssu"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="6_lpmn8"]
+[ext_resource type="Texture2D" uid="uid://dmnxl7rjdokac" path="res://assets/Icons/wave.svg" id="7_mglm0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdcma"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.49803922, 0.5176471, 0.6117647, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mglm0"]
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
 
-[node name="WavChunkLookupTest" type="Control" unique_id=1764097590 node_paths=PackedStringArray("wave_form_draw", "audio_name_label", "audio_info_label")]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpmn8"]
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5ssu"]
+
+[sub_resource type="Resource" id="Resource_bkc7y"]
+script = ExtResource("3_bkc7y")
+metadata/_custom_type_script = "uid://bmasr7j56qsvb"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5ssu"]
+shader = ExtResource("4_bkc7y")
+shader_parameter/playhead_pixel_x = 0.0
+shader_parameter/glow_pixel_width = 100.0
+shader_parameter/glow_color = Color(1, 1, 1, 1)
+shader_parameter/base_color = Color(0.381, 0.768, 0.356, 1)
+
+[node name="AudioPlayerPanel" type="PanelContainer" unique_id=377076492 node_paths=PackedStringArray("wave_form_draw", "audio_name_label", "audio_info_label", "buffer_player", "play_button", "render_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,44 +38,95 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mglm0")
 script = ExtResource("1_xb8ug")
-wave_form_draw = NodePath("WaveFormView/WaveFormRenderer")
-audio_name_label = NodePath("Name")
-audio_info_label = NodePath("Info")
-wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/hello.wav"
+wave_form_draw = NodePath("MarginContainer/Layout/HBoxContainer/WaveformView/WaveformRenderer")
+audio_name_label = NodePath("MarginContainer/Layout/Name")
+audio_info_label = NodePath("MarginContainer/Layout/Info")
+buffer_player = NodePath("SampleBufferPlayer")
+play_button = NodePath("MarginContainer/Layout/HBoxContainer/PanelContainer/HBoxContainer/Play")
+render_button = NodePath("MarginContainer/Layout/HBoxContainer/PanelContainer/HBoxContainer/Render")
 
-[node name="Name" type="Label" parent="." unique_id=384419220]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
-anchor_bottom = 0.1
-offset_left = 8.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1043162056]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer" unique_id=285045623]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Name" type="Label" parent="MarginContainer/Layout" unique_id=384419220]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
 text = "File Name"
 
-[node name="Info" type="Label" parent="." unique_id=572103996]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.9
-anchor_bottom = 0.9
-offset_left = 8.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Layout" unique_id=1597674642]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout/HBoxContainer" unique_id=510623597]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpmn8")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Layout/HBoxContainer/PanelContainer" unique_id=281369667]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Play" type="CheckButton" parent="MarginContainer/Layout/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1613822621]
+modulate = Color(0.8039216, 0.8392157, 0.95686275, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_type_variation = &"FlatCheckButtom"
+icon = ExtResource("6_lpmn8")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_bm4xp")
+toggled_icon = ExtResource("4_qbnmo")
+untoggled_icon = ExtResource("6_lpmn8")
+
+[node name="Render" type="Button" parent="MarginContainer/Layout/HBoxContainer/PanelContainer/HBoxContainer" unique_id=333833441]
+modulate = Color(0.8039216, 0.8392157, 0.95686275, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("7_mglm0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout/HBoxContainer" unique_id=1042216897]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_type_variation = &"WaveformView"
+
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/HBoxContainer/WaveformView" unique_id=1634075723]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r5ssu")
+script = ExtResource("3_r5ssu")
+strategy = SubResource("Resource_bkc7y")
+
+[node name="AudioPlaybackCursor" parent="MarginContainer/Layout/HBoxContainer/WaveformView" unique_id=1990651057 node_paths=PackedStringArray("player", "waveform_renderer") instance=ExtResource("4_r5ssu")]
+layout_mode = 2
+player = NodePath("../../../../../SampleBufferPlayer")
+waveform_renderer = NodePath("../WaveformRenderer")
+shader = SubResource("ShaderMaterial_r5ssu")
+glow_color = Color(0.7764706, 0.8156863, 0.9607843, 1)
+
+[node name="Info" type="Label" parent="MarginContainer/Layout" unique_id=572103996]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
 theme_override_font_sizes/font_size = 18
 text = "Number of Samples: 
 Sampleing Rate: "
 
-[node name="WaveFormView" type="Panel" parent="." unique_id=266088613 node_paths=PackedStringArray("wave_form_draw")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
-anchor_right = 1.0
-anchor_bottom = 0.9
-theme_override_styles/panel = SubResource("StyleBoxFlat_hdcma")
-script = ExtResource("2_s8bhq")
-wave_form_draw = NodePath("WaveFormRenderer")
-
-[node name="WaveFormRenderer" type="Node2D" parent="WaveFormView" unique_id=1398639188]
-position = Vector2(0, -194.40001)
-script = ExtResource("3_lsasv")
-normalize = true
-metadata/_custom_type_script = "uid://igy184lmmm8g"
+[node name="SampleBufferPlayer" type="Node" parent="." unique_id=694847487]
+script = ExtResource("4_qoff4")
+buffer_length = 0.05
+metadata/_custom_type_script = "uid://cildu7twcmhx3"

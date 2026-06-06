@@ -1,4 +1,13 @@
 {
-  "godotTools.editorPath.godot4": "c:\\Program Files\\Godot\\Godot_v4.6.3-stable_win64.exe",
-  "cSpell.words": ["ALAW", "callv", "ceili", "MULAW", "spinbox"]
+  "godotTools.editorPath.godot4": "c:\\Users\\Sina\\AppData\\Local\\Programs\\Godot\\Godot_v4.6.3-stable_win64.exe",
+  "cSpell.words": [
+    "ALAW",
+    "callv",
+    "ceili",
+    "lerp",
+    "maxs",
+    "MULAW",
+    "spinbox",
+    "untoggled"
+  ]
 }

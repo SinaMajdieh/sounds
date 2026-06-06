@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://simdno7bugl6"]
 
 [ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel/signal_synthesizer_panel.gd" id="1_bqf8k"]
+[ext_resource type="Script" uid="uid://bg0xr5qfav5s1" path="res://visualization/signal-synthesizer-panel/play_combined_signal_button.gd" id="2_3rysb"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="2_be1sb"]
 [ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="2_bqf8k"]
-[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_s7isq"]
-[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_8ut1w"]
+[ext_resource type="Script" uid="uid://cb841aim8i4r" path="res://visualization/signal-synthesizer-panel/play_signal_button.gd" id="3_3rysb"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="4_5vj2u"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_8ut1w"]
+[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_f7pcg"]
 [ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal-tuner-panel/signal_tuner.gd" id="5_s7isq"]
+[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://audio/audio-player/real_time_player.gd" id="7_f7pcg"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_htvx8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vj2u"]
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjn7l"]
 bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
@@ -18,39 +24,32 @@ content_margin_right = 16.0
 content_margin_bottom = 16.0
 bg_color = Color(0.06666667, 0.06666667, 0.105882354, 0)
 
+[sub_resource type="ImageTexture" id="ImageTexture_3rysb"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_f7pcg"]
+allow_unpress = true
+
+[sub_resource type="ImageTexture" id="ImageTexture_be1sb"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tq8b3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7isq"]
-bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7isq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ut1w"]
-bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+[sub_resource type="Resource" id="Resource_s7isq"]
+script = ExtResource("5_f7pcg")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7pcg"]
-bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+[sub_resource type="Resource" id="Resource_8ut1w"]
+script = ExtResource("5_f7pcg")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rysb"]
-bg_color = Color(0.09411765, 0.09411765, 0.14509805, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
+[sub_resource type="Resource" id="Resource_f7pcg"]
+script = ExtResource("5_f7pcg")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
+
+[sub_resource type="Resource" id="Resource_3rysb"]
+script = ExtResource("5_f7pcg")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
 [node name="SignalSynthesizerPanel" type="PanelContainer" unique_id=976307911 node_paths=PackedStringArray("waveform_draw", "frequency_data_tuners", "sampling_rate_label", "duration_label")]
 anchors_preset = 15
@@ -58,27 +57,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_htvx8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vj2u")
 script = ExtResource("1_bqf8k")
-waveform_draw = NodePath("MarginContainer/HLayout/RightPanel/Layout/WaveFormContainer/WaveFormUI")
+waveform_draw = NodePath("MarginContainer/HLayout/RightPanel/Layout/WaveformView/WaveformRenderer")
 frequency_data_tuners = [NodePath("MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner"), NodePath("MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2"), NodePath("MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3")]
 sampling_rate_label = NodePath("MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer/SampleRate")
 duration_label = NodePath("MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer/Duratuion")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2000001698]
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="HLayout" type="HBoxContainer" parent="MarginContainer" unique_id=1192847859]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 0
 
 [node name="LeftPanel" type="PanelContainer" parent="MarginContainer/HLayout" unique_id=1384254141]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_hjn7l")
 
 [node name="Layout" type="VBoxContainer" parent="MarginContainer/HLayout/LeftPanel" unique_id=1131912000]
@@ -87,13 +85,12 @@ theme_override_constants/separation = 0
 
 [node name="Info" type="PanelContainer" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=514968377]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 size_flags_stretch_ratio = 2.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4w7cj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HLayout/LeftPanel/Layout/Info" unique_id=14328677]
 layout_mode = 2
-size_flags_vertical = 4
 
 [node name="SampleRateLabel" type="Label" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=1679245337]
 layout_mode = 2
@@ -119,14 +116,113 @@ text = "14600"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/Info/VBoxContainer" unique_id=687959810 node_paths=PackedStringArray("audio_player", "frequency_tuners")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_icons/checked = SubResource("ImageTexture_3rysb")
+theme_override_icons/unchecked = SubResource("ImageTexture_3rysb")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_3rysb")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_3rysb")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_3rysb")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_3rysb")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_3rysb")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_3rysb")
+button_group = SubResource("ButtonGroup_f7pcg")
+icon = ExtResource("2_be1sb")
+flat = true
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_3rysb")
+audio_player = NodePath("../../../../../../../RealtimeAudioPlayer")
+frequency_tuners = [NodePath("../../../FrequencyDataTuner"), NodePath("../../../FrequencyDataTuner2"), NodePath("../../../FrequencyDataTuner3")]
+toggled_icon = ExtResource("4_5vj2u")
+untoggled_icon = ExtResource("2_be1sb")
+
 [node name="FrequencyDataTuner" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=646339270 instance=ExtResource("2_bqf8k")]
 layout_mode = 2
+size_flags_vertical = 6
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(646339270, 2146417936) index="3" unique_id=1123367884 node_paths=PackedStringArray("audio_player", "frequency_tuner")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_icons/checked = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_be1sb")
+button_group = SubResource("ButtonGroup_f7pcg")
+icon = ExtResource("2_be1sb")
+flat = true
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_3rysb")
+audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
+frequency_tuner = NodePath("../../..")
+toggled_icon = ExtResource("4_5vj2u")
+untoggled_icon = ExtResource("2_be1sb")
 
 [node name="FrequencyDataTuner2" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=1600068794 instance=ExtResource("2_bqf8k")]
 layout_mode = 2
+size_flags_vertical = 6
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1600068794, 2146417936) index="3" unique_id=1610212057 node_paths=PackedStringArray("audio_player", "frequency_tuner")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_icons/checked = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_be1sb")
+button_group = SubResource("ButtonGroup_f7pcg")
+icon = ExtResource("2_be1sb")
+flat = true
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_3rysb")
+audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
+frequency_tuner = NodePath("../../..")
+toggled_icon = ExtResource("4_5vj2u")
+untoggled_icon = ExtResource("2_be1sb")
 
 [node name="FrequencyDataTuner3" parent="MarginContainer/HLayout/LeftPanel/Layout" unique_id=1780052298 instance=ExtResource("2_bqf8k")]
 layout_mode = 2
+size_flags_vertical = 6
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1780052298, 2146417936) index="3" unique_id=877836941 node_paths=PackedStringArray("audio_player", "frequency_tuner")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_icons/checked = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_be1sb")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_be1sb")
+button_group = SubResource("ButtonGroup_f7pcg")
+icon = ExtResource("2_be1sb")
+flat = true
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_3rysb")
+audio_player = NodePath("../../../../../../../../RealtimeAudioPlayer")
+frequency_tuner = NodePath("../../..")
+toggled_icon = ExtResource("4_5vj2u")
+untoggled_icon = ExtResource("2_be1sb")
 
 [node name="RightPanel" type="PanelContainer" parent="MarginContainer/HLayout" unique_id=567192730]
 layout_mode = 2
@@ -138,105 +234,84 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_tq8b3")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="WaveFormContainer" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=1916891733 node_paths=PackedStringArray("wave_form_draw")]
+[node name="WaveformView" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=1466939469]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_s7isq")
-script = ExtResource("2_s7isq")
-wave_form_draw = NodePath("WaveFormUI")
-margin = Dictionary[String, float]({
-"bottom": 12.0,
-"left": 3.0,
-"right": 3.0,
-"top": 12.0
-})
+theme_type_variation = &"WaveformView"
 
-[node name="WaveFormUI" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormContainer" unique_id=1805613163]
-script = ExtResource("3_8ut1w")
-draw_style = 0
-normalize = true
-color = Color(0.7058824, 0.74509805, 0.99607843, 1)
-line_width = 4.0
-metadata/_custom_type_script = "uid://igy184lmmm8g"
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout/WaveformView" unique_id=592359710]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s7isq")
+script = ExtResource("4_8ut1w")
+color = Color(0.38431373, 0.40784314, 0.5019608, 1)
+line_width = 3.0
+strategy = SubResource("Resource_s7isq")
 
-[node name="WaveFormView" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=493573092 node_paths=PackedStringArray("wave_form_draw")]
+[node name="WaveformView2" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=756379942]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_8ut1w")
-script = ExtResource("2_s7isq")
-wave_form_draw = NodePath("WaveFormRenderer")
-margin = Dictionary[String, float]({
-"bottom": 12.0,
-"left": 3.0,
-"right": 3.0,
-"top": 12.0
-})
+theme_type_variation = &"WaveformView"
 
-[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormView" unique_id=460972675]
-script = ExtResource("3_8ut1w")
-draw_style = 0
-color = Color(0.5372549, 0.7058824, 0.98039216, 1)
-metadata/_custom_type_script = "uid://igy184lmmm8g"
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout/WaveformView2" unique_id=1125675586]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s7isq")
+script = ExtResource("4_8ut1w")
+color = Color(0.54901963, 0.6666667, 0.93333334, 1)
+strategy = SubResource("Resource_8ut1w")
 
-[node name="WaveFormView2" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=417776651 node_paths=PackedStringArray("wave_form_draw")]
+[node name="WaveformView3" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=629078163]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_f7pcg")
-script = ExtResource("2_s7isq")
-wave_form_draw = NodePath("WaveFormRenderer")
-margin = Dictionary[String, float]({
-"bottom": 12.0,
-"left": 3.0,
-"right": 3.0,
-"top": 12.0
-})
+theme_type_variation = &"WaveformView"
 
-[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormView2" unique_id=345034548]
-script = ExtResource("3_8ut1w")
-draw_style = 0
-metadata/_custom_type_script = "uid://igy184lmmm8g"
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout/WaveformView3" unique_id=1713368494]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s7isq")
+script = ExtResource("4_8ut1w")
+strategy = SubResource("Resource_f7pcg")
 
-[node name="WaveFormView3" type="Panel" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=1882953152 node_paths=PackedStringArray("wave_form_draw")]
+[node name="WaveformView4" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout" unique_id=1191007056]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_3rysb")
-script = ExtResource("2_s7isq")
-wave_form_draw = NodePath("WaveFormRenderer")
-margin = Dictionary[String, float]({
-"bottom": 12.0,
-"left": 3.0,
-"right": 3.0,
-"top": 12.0
-})
+theme_type_variation = &"WaveformView"
 
-[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/HLayout/RightPanel/Layout/WaveFormView3" unique_id=764364201]
-script = ExtResource("3_8ut1w")
-draw_style = 0
-color = Color(0.9529412, 0.54509807, 0.65882355, 1)
-metadata/_custom_type_script = "uid://igy184lmmm8g"
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/HLayout/RightPanel/Layout/WaveformView4" unique_id=1960856911]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s7isq")
+script = ExtResource("4_8ut1w")
+color = Color(0.90588236, 0.50980395, 0.5176471, 1)
+strategy = SubResource("Resource_3rysb")
 
 [node name="SignalTunerInterface" type="Node" parent="." unique_id=1538820232]
 
-[node name="Tuner1" type="Node" parent="SignalTunerInterface" unique_id=1609548221 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+[node name="Tuner1" type="Node" parent="SignalTunerInterface" unique_id=1609548221 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
 script = ExtResource("5_s7isq")
 frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner")
-wave_form_draw = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveFormView/WaveFormRenderer")
+waveform_renderer = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveformView2/WaveformRenderer")
 
-[node name="Tuner2" type="Node" parent="SignalTunerInterface" unique_id=1036929505 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+[node name="Tuner2" type="Node" parent="SignalTunerInterface" unique_id=1036929505 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
 script = ExtResource("5_s7isq")
 frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2")
-wave_form_draw = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveFormView2/WaveFormRenderer")
+waveform_renderer = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveformView3/WaveformRenderer")
 
-[node name="Tuner3" type="Node" parent="SignalTunerInterface" unique_id=740556306 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+[node name="Tuner3" type="Node" parent="SignalTunerInterface" unique_id=740556306 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
 script = ExtResource("5_s7isq")
 frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3")
-wave_form_draw = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveFormView3/WaveFormRenderer")
+waveform_renderer = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveformView4/WaveformRenderer")
+
+[node name="RealtimeAudioPlayer" type="Node" parent="." unique_id=580637775]
+script = ExtResource("7_f7pcg")
+buffer_length = 0.1
+
+[editable path="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner"]
+[editable path="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2"]
+[editable path="MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3"]

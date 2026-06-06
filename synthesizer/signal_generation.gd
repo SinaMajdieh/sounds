@@ -9,10 +9,17 @@ static func generate_signal(
     var samples: PackedFloat32Array = PackedFloat32Array()
     samples.resize(num_samples)
 
-    for i in num_samples:
-        var time: float = i / float(num_samples) * duration
-        for wave: FrequencyData in waves:
-            var angle: float = time * TAU * wave.frequency + wave.phase
-            samples[i] += cos(angle) * wave.amplitude
+    var phases: PackedFloat32Array = PackedFloat32Array()
+    var phase_steps: PackedFloat32Array = PackedFloat32Array()
 
+    for wave in waves:
+        phases.append(wave.phase)
+        phase_steps.append(TAU * wave.frequency / sample_rate)
+
+    for i in range(num_samples):
+        var value: float = 0.0
+        for j in range(waves.size()):
+            value += cos(phases[j]) * waves[j].amplitude
+            phases[j] += phase_steps[j]
+        samples[i] = value
     return samples

@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal-tuner-panel/signal_tuner.gd" id="1_2s88k"]
 [ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="1_x5ub1"]
-[ext_resource type="Script" uid="uid://crrhwdgjkexbn" path="res://visualization/waveform/waveform_view.gd" id="2_xnyad"]
-[ext_resource type="Script" uid="uid://igy184lmmm8g" path="res://visualization/waveform/waveform_renderer.gd" id="3_5sq1a"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_fkqto"]
+[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_fkqto"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2s88k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sq1a"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
 bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
 border_width_left = 3
 border_width_top = 3
@@ -15,7 +19,11 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
 
-[node name="SignalTunerPanel" type="Panel" unique_id=204177025 node_paths=PackedStringArray("frequency_data_ui", "wave_form_draw")]
+[sub_resource type="Resource" id="Resource_hqswo"]
+script = ExtResource("5_fkqto")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
+
+[node name="SignalTunerPanel" type="Panel" unique_id=204177025 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,7 +32,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2s88k")
 script = ExtResource("1_2s88k")
 frequency_data_ui = NodePath("MarginContainer/Layout/FrequencyDataTuner")
-wave_form_draw = NodePath("MarginContainer/Layout/WaveFormView/WaveFormRenderer")
+waveform_renderer = NodePath("MarginContainer/Layout/WaveformView/WaveformRenderer")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1194986185]
 layout_mode = 1
@@ -45,22 +53,16 @@ theme_override_constants/separation = 20
 [node name="FrequencyDataTuner" parent="MarginContainer/Layout" unique_id=646339270 instance=ExtResource("1_x5ub1")]
 layout_mode = 2
 
-[node name="WaveFormView" type="Panel" parent="MarginContainer/Layout" unique_id=96683617 node_paths=PackedStringArray("wave_form_draw")]
+[node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout" unique_id=1864510615]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5sq1a")
-script = ExtResource("2_xnyad")
-wave_form_draw = NodePath("WaveFormRenderer")
-margin = Dictionary[String, float]({
-"bottom": 12.0,
-"left": 3.0,
-"right": 3.0,
-"top": 12.0
-})
 
-[node name="WaveFormRenderer" type="Node2D" parent="MarginContainer/Layout/WaveFormView" unique_id=2139652097]
-script = ExtResource("3_5sq1a")
-draw_style = 0
-metadata/_custom_type_script = "uid://igy184lmmm8g"
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/WaveformView" unique_id=1812452115]
+layout_mode = 2
+script = ExtResource("4_fkqto")
+strategy = SubResource("Resource_hqswo")
+
+[editable path="MarginContainer/Layout/FrequencyDataTuner"]
