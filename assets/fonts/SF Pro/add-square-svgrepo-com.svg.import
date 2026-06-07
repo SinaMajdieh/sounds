@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buciqmfncjbse"
-path="res://.godot/imported/play-svgrepo-com (1).svg-e56c7b4d68da087899d00c2c8fb470d9.ctex"
+uid="uid://bxawnccvv0vie"
+path="res://.godot/imported/add-square-svgrepo-com.svg-5adf34cb08cecda08ff6395799263013.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/play-svgrepo-com (1).svg"
-dest_files=["res://.godot/imported/play-svgrepo-com (1).svg-e56c7b4d68da087899d00c2c8fb470d9.ctex"]
+source_file="res://assets/fonts/SF Pro/add-square-svgrepo-com.svg"
+dest_files=["res://.godot/imported/add-square-svgrepo-com.svg-5adf34cb08cecda08ff6395799263013.ctex"]
 
 [params]
 

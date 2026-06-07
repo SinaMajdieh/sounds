@@ -1,12 +1,14 @@
-extends Node
+class_name SignalTuner extends Node
 
-@export var frequency_data_ui: FrequencyDataTuner
+@export_subgroup("UI")
+@export var play_button: PlaybackButton
+@export var frequency_tuner: FrequencyDataTuner
 @export var waveform_renderer: WaveformRenderer
 
 
 func _ready() -> void:
-	frequency_data_ui.frequency_data_changed.connect(_on_frequency_data_changed)
-	_on_frequency_data_changed(frequency_data_ui.frequency_data)
+	frequency_tuner.frequency_data_changed.connect(_on_frequency_data_changed)
+	_on_frequency_data_changed(frequency_tuner.frequency_data)
 
 
 func _on_frequency_data_changed(new_data: FrequencyData) -> void:

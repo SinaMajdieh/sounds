@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://simdno7bugl6"]
 
-[ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel/signal_synthesizer_panel.gd" id="1_bqf8k"]
-[ext_resource type="Script" uid="uid://bg0xr5qfav5s1" path="res://visualization/signal-synthesizer-panel/play_combined_signal_button.gd" id="2_3rysb"]
+[ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel(deprecated)/signal_synthesizer_panel.gd" id="1_bqf8k"]
+[ext_resource type="Script" uid="uid://bg0xr5qfav5s1" path="res://visualization/signal-synthesizer-panel(deprecated)/play_combined_signal_button.gd" id="2_3rysb"]
 [ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="2_be1sb"]
 [ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="2_bqf8k"]
-[ext_resource type="Script" uid="uid://cb841aim8i4r" path="res://visualization/signal-synthesizer-panel/play_signal_button.gd" id="3_3rysb"]
+[ext_resource type="Script" uid="uid://cb841aim8i4r" path="res://visualization/signal-synthesizer-panel(deprecated)/play_signal_button.gd" id="3_3rysb"]
 [ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="4_5vj2u"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_8ut1w"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_f7pcg"]
@@ -293,19 +293,16 @@ strategy = SubResource("Resource_3rysb")
 
 [node name="SignalTunerInterface" type="Node" parent="." unique_id=1538820232]
 
-[node name="Tuner1" type="Node" parent="SignalTunerInterface" unique_id=1609548221 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
+[node name="Tuner1" type="Node" parent="SignalTunerInterface" unique_id=1609548221 node_paths=PackedStringArray("waveform_renderer")]
 script = ExtResource("5_s7isq")
-frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner")
 waveform_renderer = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveformView2/WaveformRenderer")
 
-[node name="Tuner2" type="Node" parent="SignalTunerInterface" unique_id=1036929505 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
+[node name="Tuner2" type="Node" parent="SignalTunerInterface" unique_id=1036929505 node_paths=PackedStringArray("waveform_renderer")]
 script = ExtResource("5_s7isq")
-frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner2")
 waveform_renderer = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveformView3/WaveformRenderer")
 
-[node name="Tuner3" type="Node" parent="SignalTunerInterface" unique_id=740556306 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
+[node name="Tuner3" type="Node" parent="SignalTunerInterface" unique_id=740556306 node_paths=PackedStringArray("waveform_renderer")]
 script = ExtResource("5_s7isq")
-frequency_data_ui = NodePath("../../MarginContainer/HLayout/LeftPanel/Layout/FrequencyDataTuner3")
 waveform_renderer = NodePath("../../MarginContainer/HLayout/RightPanel/Layout/WaveformView4/WaveformRenderer")
 
 [node name="RealtimeAudioPlayer" type="Node" parent="." unique_id=580637775]

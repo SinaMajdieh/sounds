@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://b65lg7ypwihre"]
+
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="1_ggaod"]
+[ext_resource type="Script" uid="uid://cely2v8npfdqt" path="res://visualization/synthesizer/synthesizer.gd" id="1_oyvc2"]
+[ext_resource type="Script" uid="uid://b0bsn5eetl263" path="res://visualization/synthesizer/synthesizer_panel.gd" id="1_wkqdl"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="3_cmid8"]
+[ext_resource type="Script" uid="uid://c23xpwnmv6oiy" path="res://visualization/synthesizer/buttons/synthesizer_playback.gd" id="3_l2eyb"]
+[ext_resource type="Script" uid="uid://66sb0dewgbgk" path="res://visualization/synthesizer/tuner_group.gd" id="3_rcg87"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_jt5br"]
+[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://audio/audio-player/real_time_player.gd" id="5_ggaod"]
+[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_l2eyb"]
+[ext_resource type="PackedScene" uid="uid://c3eke133pfjam" path="res://visualization/signal-tuner-panel/signal_tuner_panel.tscn" id="6_oyvc2"]
+[ext_resource type="Script" uid="uid://cro2n2i35jd3v" path="res://visualization/synthesizer/buttons/add_tuner_button.gd" id="10_o8keg"]
+[ext_resource type="ColorPalette" uid="uid://dt3j38rr3fg04" path="res://visualization/synthesizer/palatte.tres" id="10_u03rd"]
+[ext_resource type="Texture2D" uid="uid://b1xcmnwedcej1" path="res://assets/Icons/remove.svg" id="11_arn4b"]
+[ext_resource type="Texture2D" uid="uid://cebp6k8ln0nfe" path="res://assets/Icons/add.svg" id="11_ra1fe"]
+[ext_resource type="Script" uid="uid://dod2kfalommvx" path="res://visualization/synthesizer/buttons/tuner_remove_button.gd" id="12_h5ccs"]
+[ext_resource type="Script" uid="uid://c8a8hu2te82p7" path="res://visualization/synthesizer/signal_count.gd" id="13_6i3rb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkqdl"]
+content_margin_left = 18.0
+content_margin_top = 18.0
+content_margin_right = 18.0
+content_margin_bottom = 18.0
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8keg"]
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u03rd"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 0)
+
+[sub_resource type="ImageTexture" id="ImageTexture_wkqdl"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_wkqdl"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5ccs"]
+
+[sub_resource type="Resource" id="Resource_d7j5s"]
+script = ExtResource("5_l2eyb")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra1fe"]
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_6i3rb"]
+variation_opentype = {
+1869640570: 28,
+2003265652: 200
+}
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_h5ccs"]
+allow_unpress = true
+
+[node name="Synthesizer" type="PanelContainer" unique_id=785736879 node_paths=PackedStringArray("tuner_group")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wkqdl")
+script = ExtResource("1_wkqdl")
+num_tuners = 0
+tuner_group = NodePath("Layout/TunerGroupScroll/TunerGroupContainer/TunerGroup")
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=895420418]
+layout_mode = 2
+
+[node name="SynthesizedSignalPanel" type="PanelContainer" parent="Layout" unique_id=1685359711 node_paths=PackedStringArray("waveform_draw")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_o8keg")
+script = ExtResource("1_oyvc2")
+waveform_draw = NodePath("Layout/WaveformView/WaveformRenderer")
+
+[node name="Layout" type="HBoxContainer" parent="Layout/SynthesizedSignalPanel" unique_id=1263794883]
+layout_mode = 2
+
+[node name="Info" type="PanelContainer" parent="Layout/SynthesizedSignalPanel/Layout" unique_id=254367838]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u03rd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Layout/SynthesizedSignalPanel/Layout/Info" unique_id=649434960]
+layout_mode = 2
+
+[node name="SampleRateLabel" type="Label" parent="Layout/SynthesizedSignalPanel/Layout/Info/VBoxContainer" unique_id=1462828216]
+layout_mode = 2
+text = "Sample Rate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SampleRate" type="Label" parent="Layout/SynthesizedSignalPanel/Layout/Info/VBoxContainer" unique_id=937849806]
+layout_mode = 2
+text = "14100 Hz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DurationLabel" type="Label" parent="Layout/SynthesizedSignalPanel/Layout/Info/VBoxContainer" unique_id=2021831409]
+layout_mode = 2
+text = "Duration"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Duratuion" type="Label" parent="Layout/SynthesizedSignalPanel/Layout/Info/VBoxContainer" unique_id=1206350447]
+layout_mode = 2
+text = "0.1 s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Playback" type="CheckButton" parent="Layout/SynthesizedSignalPanel/Layout/Info/VBoxContainer" unique_id=1374511049 node_paths=PackedStringArray("audio_player")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_icons/checked = SubResource("ImageTexture_wkqdl")
+theme_override_icons/unchecked = SubResource("ImageTexture_wkqdl")
+theme_override_icons/checked_disabled = SubResource("ImageTexture_wkqdl")
+theme_override_icons/unchecked_disabled = SubResource("ImageTexture_wkqdl")
+theme_override_icons/checked_mirrored = SubResource("ImageTexture_wkqdl")
+theme_override_icons/unchecked_mirrored = SubResource("ImageTexture_wkqdl")
+theme_override_icons/checked_disabled_mirrored = SubResource("ImageTexture_wkqdl")
+theme_override_icons/unchecked_disabled_mirrored = SubResource("ImageTexture_wkqdl")
+button_group = SubResource("ButtonGroup_wkqdl")
+icon = ExtResource("1_ggaod")
+flat = true
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_l2eyb")
+audio_player = NodePath("../../../../../../RealtimeAudioPlayer")
+toggled_icon = ExtResource("3_cmid8")
+untoggled_icon = ExtResource("1_ggaod")
+
+[node name="WaveformView" type="PanelContainer" parent="Layout/SynthesizedSignalPanel/Layout" unique_id=1130450571]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"WaveformView"
+
+[node name="WaveformRenderer" type="PanelContainer" parent="Layout/SynthesizedSignalPanel/Layout/WaveformView" unique_id=1599657756]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h5ccs")
+script = ExtResource("4_jt5br")
+color = Color(0.38431373, 0.40784314, 0.5019608, 1)
+line_width = 3.0
+strategy = SubResource("Resource_d7j5s")
+
+[node name="TunerGroupScroll" type="ScrollContainer" parent="Layout" unique_id=260331455]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+follow_focus = true
+
+[node name="TunerGroupContainer" type="PanelContainer" parent="Layout/TunerGroupScroll" unique_id=1858250015]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ra1fe")
+
+[node name="TunerGroup" type="VBoxContainer" parent="Layout/TunerGroupScroll/TunerGroupContainer" unique_id=1568406782 node_paths=PackedStringArray("sample_tuner", "audio_player")]
+layout_mode = 2
+script = ExtResource("3_rcg87")
+sample_tuner = NodePath("../../../../SampleTuner")
+remove_button_path = "Layout/RemoveButton"
+audio_player = NodePath("../../../../RealtimeAudioPlayer")
+button_group = SubResource("ButtonGroup_wkqdl")
+palette = ExtResource("10_u03rd")
+
+[node name="Fotter" type="HBoxContainer" parent="Layout" unique_id=1574350354]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Label2" type="Label" parent="Layout/Fotter" unique_id=1465875579]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="AddTunerButton" type="Button" parent="Layout/Fotter" unique_id=2143733634 node_paths=PackedStringArray("tuner_group")]
+modulate = Color(0.42352942, 0.4392157, 0.5254902, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("11_ra1fe")
+flat = true
+icon_alignment = 1
+script = ExtResource("10_o8keg")
+tuner_group = NodePath("../../TunerGroupScroll/TunerGroupContainer/TunerGroup")
+
+[node name="SignalCount" type="Label" parent="Layout/Fotter" unique_id=1909985644 node_paths=PackedStringArray("tuner_group")]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = SubResource("FontVariation_6i3rb")
+text = "Number Of Signals: 12"
+script = ExtResource("13_6i3rb")
+tuner_group = NodePath("../../TunerGroupScroll/TunerGroupContainer/TunerGroup")
+
+[node name="RealtimeAudioPlayer" type="Node" parent="." unique_id=153699741]
+script = ExtResource("5_ggaod")
+buffer_length = 0.1
+metadata/_custom_type_script = "uid://c50x5b8qoigj"
+
+[node name="SampleTuner" parent="." unique_id=1225608333 instance=ExtResource("6_oyvc2")]
+visible = false
+layout_mode = 2
+
+[node name="Playback" parent="SampleTuner/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1225608333, 646339270, 2146417936) index="3" unique_id=689463971]
+button_group = SubResource("ButtonGroup_h5ccs")
+
+[node name="RemoveButton" type="Button" parent="SampleTuner/Layout" parent_id_path=PackedInt32Array(1225608333, 2028982350) index="2" unique_id=1928188116 node_paths=PackedStringArray("tuner")]
+modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.3
+icon = ExtResource("11_arn4b")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("12_h5ccs")
+tuner = NodePath("../..")
+hover_color = Color(0.9529412, 0.54509807, 0.65882355, 1)
+color = Color(0.49803922, 0.5176471, 0.6117647, 1)
+
+[connection signal="frequency_data_changed" from="Layout/TunerGroupScroll/TunerGroupContainer/TunerGroup" to="Layout/SynthesizedSignalPanel" method="_on_frequency_data_changed"]
+[connection signal="frequency_data_changed" from="Layout/TunerGroupScroll/TunerGroupContainer/TunerGroup" to="Layout/SynthesizedSignalPanel/Layout/Info/VBoxContainer/Playback" method="_on_frequency_data_changed"]
+
+[editable path="SampleTuner"]
+[editable path="SampleTuner/Layout/FrequencyDataTuner"]

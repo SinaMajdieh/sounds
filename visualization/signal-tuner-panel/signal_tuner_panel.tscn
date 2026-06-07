@@ -4,69 +4,61 @@
 [ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency-data-tuner/frequency_data_tuner.tscn" id="1_x5ub1"]
 [ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="3_2whvl"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_fkqto"]
-[ext_resource type="Script" uid="uid://cb841aim8i4r" path="res://visualization/signal-synthesizer-panel/play_signal_button.gd" id="4_klnww"]
+[ext_resource type="Script" uid="uid://cb841aim8i4r" path="res://visualization/signal-synthesizer-panel(deprecated)/play_signal_button.gd" id="4_klnww"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_fkqto"]
 [ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="5_g6mbo"]
 [ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://audio/audio-player/real_time_player.gd" id="8_rwon8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2s88k"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2whvl"]
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klnww"]
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
 
 [sub_resource type="ImageTexture" id="ImageTexture_istte"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vkini"]
 allow_unpress = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sq1a"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hqswo"]
 
-[sub_resource type="Resource" id="Resource_hqswo"]
+[sub_resource type="Resource" id="Resource_2whvl"]
 script = ExtResource("5_fkqto")
 metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
-[node name="SignalTunerPanel" type="Panel" unique_id=204177025 node_paths=PackedStringArray("frequency_data_ui", "waveform_renderer")]
+[node name="SignalTunerPanel" type="PanelContainer" unique_id=1225608333 node_paths=PackedStringArray("play_button", "frequency_tuner", "waveform_renderer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2s88k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2whvl")
 script = ExtResource("1_2s88k")
-frequency_data_ui = NodePath("MarginContainer/Layout/FrequencyDataTuner")
-waveform_renderer = NodePath("MarginContainer/Layout/WaveformView/WaveformRenderer")
+play_button = NodePath("Layout/FrequencyDataTuner/MarginContainer/SpinBoxes/Playback")
+frequency_tuner = NodePath("Layout/FrequencyDataTuner")
+waveform_renderer = NodePath("Layout/WaveformView/WaveformRenderer")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1194986185]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Layout" type="HBoxContainer" parent="MarginContainer" unique_id=2028982350]
+[node name="Layout" type="HBoxContainer" parent="." unique_id=2028982350]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="FrequencyDataTuner" parent="MarginContainer/Layout" unique_id=646339270 instance=ExtResource("1_x5ub1")]
+[node name="FrequencyDataTuner" parent="Layout" unique_id=646339270 instance=ExtResource("1_x5ub1")]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_klnww")
 
-[node name="Playback" type="CheckButton" parent="MarginContainer/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(646339270, 2146417936) index="3" unique_id=689463971 node_paths=PackedStringArray("frequency_tuner", "audio_player")]
+[node name="MarginContainer" parent="Layout/FrequencyDataTuner" index="0" unique_id=1291082557]
+size_flags_vertical = 0
+
+[node name="SpinBoxes" parent="Layout/FrequencyDataTuner/MarginContainer" index="0" unique_id=2146417936]
+size_flags_vertical = 0
+
+[node name="Playback" type="CheckButton" parent="Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" index="3" unique_id=689463971 node_paths=PackedStringArray("frequency_tuner", "audio_player")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -86,26 +78,26 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_klnww")
 frequency_tuner = NodePath("../../..")
-audio_player = NodePath("../../../../../../RealtimeAudioPlayer")
+audio_player = NodePath("../../../../../RealtimeAudioPlayer")
 toggled_icon = ExtResource("5_g6mbo")
 untoggled_icon = ExtResource("3_2whvl")
 
-[node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout" unique_id=1864510615]
+[node name="WaveformView" type="PanelContainer" parent="Layout" unique_id=1864510615]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5sq1a")
+theme_type_variation = &"WaveformView"
 
-[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/WaveformView" unique_id=1812452115]
+[node name="WaveformRenderer" type="PanelContainer" parent="Layout/WaveformView" unique_id=1812452115]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hqswo")
 script = ExtResource("4_fkqto")
-strategy = SubResource("Resource_hqswo")
+strategy = SubResource("Resource_2whvl")
 
 [node name="RealtimeAudioPlayer" type="Node" parent="." unique_id=1100886066]
 script = ExtResource("8_rwon8")
 buffer_length = 0.1
 metadata/_custom_type_script = "uid://c50x5b8qoigj"
 
-[editable path="MarginContainer/Layout/FrequencyDataTuner"]
+[editable path="Layout/FrequencyDataTuner"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bc2mpbmj4m41q"]
 
-[ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel/signal_synthesizer_panel.gd" id="1_pu6af"]
+[ext_resource type="Script" uid="uid://bhlq0j76ahk3o" path="res://visualization/signal-synthesizer-panel(deprecated)/signal_synthesizer_panel.gd" id="1_pu6af"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="3_otrgu"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="4_1d32i"]
 [ext_resource type="PackedScene" uid="uid://c3eke133pfjam" path="res://visualization/signal-tuner-panel/signal_tuner_panel.tscn" id="4_3pwpp"]
@@ -31,6 +31,15 @@ border_color = Color(0.19215687, 0.19607843, 0.26666668, 1)
 script = ExtResource("4_1d32i")
 metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_3bnkr"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_otrgu"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1d32i"]
+allow_unpress = true
+
 [node name="SignalSynthesizerPanel" type="PanelContainer" unique_id=976307911 node_paths=PackedStringArray("waveform_draw", "frequency_data_tuners", "sampling_rate_label", "duration_label")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +49,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_htvx8")
 script = ExtResource("1_pu6af")
 waveform_draw = NodePath("SignalTunerPanels/SynthesizedPanel/Layout/WaveFormView/PanelContainer")
-frequency_data_tuners = [NodePath("SignalTunerPanels/SignalTunerPanel1/MarginContainer/Layout/FrequencyDataTuner"), NodePath("SignalTunerPanels/SignalTunerPanel2/MarginContainer/Layout/FrequencyDataTuner"), NodePath("SignalTunerPanels/SignalTunerPanel3/MarginContainer/Layout/FrequencyDataTuner")]
+frequency_data_tuners = [null, null, null]
 sampling_rate_label = NodePath("SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels/SampleRate")
 duration_label = NodePath("SignalTunerPanels/SynthesizedPanel/Layout/InfoPanel/Labels/Duratuion")
 
@@ -123,7 +132,10 @@ clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="WaveformRenderer" parent="SignalTunerPanels/SignalTunerPanel1/MarginContainer/Layout/WaveformView" parent_id_path=PackedInt32Array(204177025, 1864510615) index="0" unique_id=1812452115]
+[node name="Playback" parent="SignalTunerPanels/SignalTunerPanel1/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(204177025, 646339270, 2146417936) index="3" unique_id=689463971]
+button_group = SubResource("ButtonGroup_3bnkr")
+
+[node name="WaveformRenderer" parent="SignalTunerPanels/SignalTunerPanel1/Layout/WaveformView" parent_id_path=PackedInt32Array(204177025, 1864510615) index="0" unique_id=1812452115]
 color = Color(0.54901963, 0.6666667, 0.93333334, 1)
 
 [node name="SignalTunerPanel2" parent="SignalTunerPanels" unique_id=144055243 instance=ExtResource("4_3pwpp")]
@@ -131,14 +143,23 @@ clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="Playback" parent="SignalTunerPanels/SignalTunerPanel2/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(144055243, 646339270, 2146417936) index="3" unique_id=689463971]
+button_group = SubResource("ButtonGroup_otrgu")
+
 [node name="SignalTunerPanel3" parent="SignalTunerPanels" unique_id=687009643 instance=ExtResource("4_3pwpp")]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="WaveformRenderer" parent="SignalTunerPanels/SignalTunerPanel3/MarginContainer/Layout/WaveformView" parent_id_path=PackedInt32Array(687009643, 1864510615) index="0" unique_id=1812452115]
+[node name="Playback" parent="SignalTunerPanels/SignalTunerPanel3/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(687009643, 646339270, 2146417936) index="3" unique_id=689463971]
+button_group = SubResource("ButtonGroup_1d32i")
+
+[node name="WaveformRenderer" parent="SignalTunerPanels/SignalTunerPanel3/Layout/WaveformView" parent_id_path=PackedInt32Array(687009643, 1864510615) index="0" unique_id=1812452115]
 color = Color(0.90588236, 0.50980395, 0.5176471, 1)
 
 [editable path="SignalTunerPanels/SignalTunerPanel1"]
+[editable path="SignalTunerPanels/SignalTunerPanel1/Layout/FrequencyDataTuner"]
 [editable path="SignalTunerPanels/SignalTunerPanel2"]
+[editable path="SignalTunerPanels/SignalTunerPanel2/Layout/FrequencyDataTuner"]
 [editable path="SignalTunerPanels/SignalTunerPanel3"]
+[editable path="SignalTunerPanels/SignalTunerPanel3/Layout/FrequencyDataTuner"]

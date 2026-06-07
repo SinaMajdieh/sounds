@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://57dtnxtfj2tx"
-path="res://.godot/imported/wave-pulse-svgrepo-com.svg-2b1fd99606b66b19da6c4c763b44a20d.ctex"
+uid="uid://cebp6k8ln0nfe"
+path="res://.godot/imported/add.svg-89106569b5c238ef7bf24cf088635b39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wave-pulse-svgrepo-com.svg"
-dest_files=["res://.godot/imported/wave-pulse-svgrepo-com.svg-2b1fd99606b66b19da6c4c763b44a20d.ctex"]
+source_file="res://assets/Icons/add.svg"
+dest_files=["res://.godot/imported/add.svg-89106569b5c238ef7bf24cf088635b39.ctex"]
 
 [params]
 

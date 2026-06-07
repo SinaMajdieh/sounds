@@ -3,7 +3,7 @@ extends Control
 
 signal animation_finished()
 
-@export var resolution_scale: float = 1.0
+@export_range(0.0, 1.0) var resolution_scale: float = 1.0
 @export var normalize: bool = false
 @export var color: Color = Color("a6e3a1")
 @export var line_width: float = 2.0

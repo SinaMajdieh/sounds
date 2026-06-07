@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bgrll5wivihuk"]
 
 [ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://visualization/audio-panel/audio_panel.gd" id="1_xb8ug"]
-[ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_bkc7y"]
 [ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://UI/playback_button.gd" id="3_bm4xp"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="3_r5ssu"]
 [ext_resource type="Shader" uid="uid://cjkek3wuwq4ye" path="res://visualization/audio-playback-cursor/bloom/bloom_trail.gdshader" id="4_bkc7y"]
@@ -9,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cildu7twcmhx3" path="res://audio/audio-player/sample_buffer_player.gd" id="4_qoff4"]
 [ext_resource type="PackedScene" uid="uid://bcpqc1ohrfgqx" path="res://visualization/audio-playback-cursor/audio_playback_cursor.tscn" id="4_r5ssu"]
 [ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="6_lpmn8"]
+[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_bm4xp"]
 [ext_resource type="Texture2D" uid="uid://dmnxl7rjdokac" path="res://assets/Icons/wave.svg" id="7_mglm0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mglm0"]
@@ -19,9 +19,9 @@ bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5ssu"]
 
-[sub_resource type="Resource" id="Resource_bkc7y"]
-script = ExtResource("3_bkc7y")
-metadata/_custom_type_script = "uid://bmasr7j56qsvb"
+[sub_resource type="Resource" id="Resource_qbnmo"]
+script = ExtResource("7_bm4xp")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r5ssu"]
 shader = ExtResource("4_bkc7y")
@@ -110,7 +110,8 @@ theme_type_variation = &"WaveformView"
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r5ssu")
 script = ExtResource("3_r5ssu")
-strategy = SubResource("Resource_bkc7y")
+color = Color(0.9529412, 0.54509807, 0.65882355, 1)
+strategy = SubResource("Resource_qbnmo")
 
 [node name="AudioPlaybackCursor" parent="MarginContainer/Layout/HBoxContainer/WaveformView" unique_id=1990651057 node_paths=PackedStringArray("player", "waveform_renderer") instance=ExtResource("4_r5ssu")]
 layout_mode = 2
