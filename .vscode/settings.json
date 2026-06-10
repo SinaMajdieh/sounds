@@ -5,6 +5,7 @@
     "callv",
     "ceili",
     "lerp",
+    "Mathf",
     "maxs",
     "MULAW",
     "spinbox",
