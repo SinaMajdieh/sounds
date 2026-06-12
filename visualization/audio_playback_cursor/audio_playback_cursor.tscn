@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bcpqc1ohrfgqx"]
+
+[ext_resource type="Script" uid="uid://c5bjmyadwnqae" path="res://visualization/audio_playback_cursor/bloom/bloom_cursor.gd" id="1_gye71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gye71"]
+
+[node name="AudioPlaybackCursor" type="PanelContainer" unique_id=1833826684]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gye71")
+script = ExtResource("1_gye71")

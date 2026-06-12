@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://bboh3wm7pvhpn"]
 
-[ext_resource type="FontFile" uid="uid://dbf5j63q5nd32" path="res://assets/fonts/SF Pro/SF-Pro.ttf" id="1_c8gvj"]
+[ext_resource type="FontFile" uid="uid://dbf5j63q5nd32" path="res://assets/fonts/sf_pro/SF-Pro.ttf" id="1_c8gvj"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_c8gvj"]
 

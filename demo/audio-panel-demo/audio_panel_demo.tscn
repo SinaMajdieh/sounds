@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dku3owa0xok61"]
 
 [ext_resource type="Script" uid="uid://b6c5tiyr07o4s" path="res://demo/audio-panel-demo/audio_panel_demo.gd" id="1_8fp2t"]
-[ext_resource type="PackedScene" uid="uid://bgrll5wivihuk" path="res://visualization/audio-panel/audio_panel.tscn" id="2_7t2qv"]
+[ext_resource type="PackedScene" uid="uid://bgrll5wivihuk" path="res://visualization/audio_panel/audio_panel.tscn" id="2_7t2qv"]
 [ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_7t2qv"]
 
 [sub_resource type="Resource" id="Resource_01yjt"]

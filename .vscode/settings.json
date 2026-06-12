@@ -8,7 +8,9 @@
     "Mathf",
     "maxs",
     "MULAW",
+    "Nyquist",
     "spinbox",
+    "Stft",
     "untoggled"
   ]
 }

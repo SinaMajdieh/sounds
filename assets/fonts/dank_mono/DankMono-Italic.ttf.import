@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bdc7ufy7micsu"
-path="res://.godot/imported/Inter-Italic-VariableFont_opsz,wght.ttf-3562887ec4d6e53677a0d94697eba1fd.fontdata"
+uid="uid://7n5rvmqwbklw"
+path="res://.godot/imported/DankMono-Italic.ttf-4e16824572ad7bae1a8eed82dee3b6bc.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf"
-dest_files=["res://.godot/imported/Inter-Italic-VariableFont_opsz,wght.ttf-3562887ec4d6e53677a0d94697eba1fd.fontdata"]
+source_file="res://assets/fonts/dank_mono/DankMono-Italic.ttf"
+dest_files=["res://.godot/imported/DankMono-Italic.ttf-4e16824572ad7bae1a8eed82dee3b6bc.fontdata"]
 
 [params]
 

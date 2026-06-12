@@ -1,0 +1,137 @@
+C:\Users\Sina\Documents\Coding\Godot projects\sounds
+├── audio
+│   ├── audio_player
+│   │   ├── real_time_player.gd
+│   │   ├── real_time_player.gd.uid
+│   │   ├── sample_buffer_player.gd
+│   │   └── sample_buffer_player.gd.uid
+│   └── wav
+│       ├── wav_chunk.gd
+│       ├── wav_chunk.gd.uid
+│       ├── wav_constants.gd
+│       ├── wav_constants.gd.uid
+│       ├── wav_decoder.gd
+│       ├── wav_decoder.gd.uid
+│       ├── wav_format.gd
+│       ├── wav_format.gd.uid
+│       ├── wav_pcm_decoder.gd
+│       ├── wav_pcm_decoder.gd.uid
+│       ├── wav_reader.gd
+│       ├── wav_reader.gd.uid
+│       ├── wav_signal.gd
+│       └── wav_signal.gd.uid
+├── core
+│   └── dsp
+│       ├── analysis
+│       │   ├── Dft.cs
+│       │   ├── Dft.cs.uid
+│       │   ├── Fft.cs
+│       │   ├── Fft.cs.uid
+│       │   ├── Stft.cs
+│       │   └── Stft.cs.uid
+│       ├── domain
+│       │   ├── FrequencyData.cs
+│       │   ├── FrequencyData.cs.uid
+│       │   ├── stftResult.cs
+│       │   ├── stftResult.cs.uid
+│       │   ├── StftSegment.cs
+│       │   └── StftSegment.cs.uid
+│       ├── resources
+│       │   ├── frequency_data.gd
+│       │   ├── frequency_data.gd.uid
+│       │   ├── FrequencyDataResource.cs
+│       │   ├── FrequencyDataResource.cs.uid
+│       │   ├── StftResultResource.cs
+│       │   ├── StftResultResource.cs.uid
+│       │   ├── StftSegmentResource.cs
+│       │   └── StftSegmentResource.cs.uid
+│       ├── serialization
+│       │   ├── ResourceMapper.cs
+│       │   └── ResourceMapper.cs.uid
+│       └── synthesis
+│           ├── cos_generator.gd
+│           ├── cos_generator.gd.uid
+│           ├── generator_base.gd
+│           ├── generator_base.gd.uid
+│           ├── signal_generation.gd
+│           ├── signal_generation.gd.uid
+│           ├── SignalGenerator.cs
+│           └── SignalGenerator.cs.uid
+├── demo
+│   └── audio-panel-demo
+│       ├── audio_panel_demo.gd
+│       ├── audio_panel_demo.gd.uid
+│       └── audio_panel_demo.tscn
+├── test
+│   ├── unit
+│   │   ├── test_dsp.gd
+│   │   ├── test_dsp.gd.uid
+│   │   ├── test_wav_reader.gd
+│   │   └── test_wav_reader.gd.uid
+│   ├── dsp.gd
+│   ├── dsp.gd.uid
+│   └── dsp.tscn
+├── ui
+│   ├── playback_button.gd
+│   ├── playback_button.gd.uid
+│   ├── toggle_icon_button.gd
+│   └── toggle_icon_button.gd.uid
+├── visualization
+│   ├── audio_panel
+│   │   ├── audio_panel.gd
+│   │   ├── audio_panel.gd.uid
+│   │   └── audio_panel.tscn
+│   ├── audio_playback_cursor
+│   │   ├── bloom
+│   │   │   ├── bloom_cursor.gd
+│   │   │   ├── bloom_cursor.gd.uid
+│   │   │   ├── bloom_trail.gdshader
+│   │   │   └── bloom_trail.gdshader.uid
+│   │   ├── audio_playback_cursor.tscn
+│   │   ├── audio_playback_cursot_base.gd
+│   │   └── audio_playback_cursot_base.gd.uid
+│   ├── frequency_data_tuner
+│   │   ├── frequency_data_tuner.gd
+│   │   ├── frequency_data_tuner.gd.uid
+│   │   └── frequency_data_tuner.tscn
+│   ├── signal_tuner_panel
+│   │   ├── signal_tuner.gd
+│   │   ├── signal_tuner.gd.uid
+│   │   └── signal_tuner_panel.tscn
+│   ├── synthesizer
+│   │   ├── buttons
+│   │   │   ├── add_tuner_button.gd
+│   │   │   ├── add_tuner_button.gd.uid
+│   │   │   ├── synthesizer_playback.gd
+│   │   │   ├── synthesizer_playback.gd.uid
+│   │   │   ├── tuner_remove_button.gd
+│   │   │   └── tuner_remove_button.gd.uid
+│   │   ├── palatte.tres
+│   │   ├── signal_count.gd
+│   │   ├── signal_count.gd.uid
+│   │   ├── synthesizer.gd
+│   │   ├── synthesizer.gd.uid
+│   │   ├── synthesizer.tscn
+│   │   ├── synthesizer_panel.gd
+│   │   ├── synthesizer_panel.gd.uid
+│   │   ├── tuner_group.gd
+│   │   └── tuner_group.gd.uid
+│   └── waveform
+│       ├── strategies
+│       │   ├── waveform_strategy_bar.gd
+│       │   ├── waveform_strategy_bar.gd.uid
+│       │   ├── waveform_strategy_base.gd
+│       │   ├── waveform_strategy_base.gd.uid
+│       │   ├── waveform_strategy_continuous.gd
+│       │   └── waveform_strategy_continuous.gd.uid
+│       ├── wave_form_cache.gd
+│       ├── wave_form_cache.gd.uid
+│       ├── wave_form_renderer.gd
+│       └── wave_form_renderer.gd.uid
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── dotnet-tools.json
+├── project.godot
+├── Sounds.csproj
+└── Sounds.sln

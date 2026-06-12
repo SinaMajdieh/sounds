@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bdc7ufy7micsu"
-path="res://.godot/imported/Inter-Italic-VariableFont_opsz,wght.ttf-3562887ec4d6e53677a0d94697eba1fd.fontdata"
+uid="uid://dbf5j63q5nd32"
+path="res://.godot/imported/SF-Pro.ttf-3c29cef92f02bbf206cdcf7bb7965629.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf"
-dest_files=["res://.godot/imported/Inter-Italic-VariableFont_opsz,wght.ttf-3562887ec4d6e53677a0d94697eba1fd.fontdata"]
+source_file="res://assets/fonts/sf_pro/SF-Pro.ttf"
+dest_files=["res://.godot/imported/SF-Pro.ttf-3c29cef92f02bbf206cdcf7bb7965629.fontdata"]
 
 [params]
 
