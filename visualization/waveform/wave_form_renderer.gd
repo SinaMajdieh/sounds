@@ -13,6 +13,8 @@ signal animation_finished()
 @export var ease_type: Tween.EaseType = Tween.EASE_IN_OUT
 
 var cache: WaveformCache = WaveformCache.new()
+var _range_begin: int = 0
+var _range_end: int = 0
 
 var _tween: Tween
 
@@ -25,6 +27,8 @@ func _ready() -> void:
 
 
 func _set_progress(v: float) -> void:
+	if v == progress:
+		return
 	progress = clamp(v, 0.0, 1.0)
 	queue_redraw()
 
@@ -35,28 +39,42 @@ func set_renderer(r: WaveformStrategy) -> void:
 
 
 func _on_resized() -> void:
-	cache.build(int(size.x * resolution_scale), normalize)
+	_rebuild_cache()
 
+
+func _rebuild_cache() -> void:
+	cache.build(int(size.x * resolution_scale), normalize, _range_begin, _range_end)
 	queue_redraw()
 
 
-func set_samples(samples: PackedFloat32Array) -> void:
-	cache.set_samples(samples)
+func set_samples(samples: PackedFloat32Array, begin: int = 0, end: int= -1) -> void:
+	var source_changed: bool = samples != cache.samples
+	var range_changed: bool = begin != _range_begin or end != _range_end
+	
+	if not source_changed and not range_changed:
+		return
+	
+	if source_changed:
+		cache.set_samples(samples)
+	
+	_range_begin = begin
+	_range_end = end
 
-	if size.x > 0:
-		cache.build(int(size.x * resolution_scale), normalize)
+	if size.x < 0:
+		return
+	
+	_rebuild_cache()
 
-	queue_redraw()
 
 
-func draw(samples: PackedFloat32Array) -> void:
-	set_samples(samples)
+func draw(samples: PackedFloat32Array, begin: int = 0, end: int = -1) -> void:
+	set_samples(samples, begin, end)
 	progress = 1.0
 
 
-func animate_draw(samples: PackedFloat32Array, duration: float) -> void:
+func animate_draw(samples: PackedFloat32Array, duration: float, begin: int = 0, end: int = -1) -> void:
 
-	set_samples(samples)
+	set_samples(samples, begin, end)
 
 	if _tween and _tween.is_running():
 		_tween.kill()

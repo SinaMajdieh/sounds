@@ -11,7 +11,7 @@ extends Control
 
 
 var file_name: String
-var audio: WavSignal = WavSignal.new()
+var audio: SignalResource = SignalResource.new()
 
 
 func _ready() -> void:
@@ -29,7 +29,8 @@ func open(wav_path: String) -> void:
 	if not wav_file:
 		return
 
-	audio = WavReader.read(wav_file)
+	var wav_signal: WavSignal = WavReader.read(wav_file)
+	audio = SignalResource.Create(wav_signal.samples, wav_signal.sample_rate)
 	wav_file.close()
 
 	buffer_player.load_signal(audio)
@@ -39,12 +40,12 @@ func open(wav_path: String) -> void:
 
 
 func render_waveform() -> void:
-	wave_form_draw.animate_draw(audio.samples, 1.618)
+	wave_form_draw.animate_draw(audio.Samples, 1.618)
 	audio_name_label.text = file_name
 	audio_info_label.text = "Sampling Rate: %d\nNumber of Samples: %d\nDuration: %.2fs" % [
-		audio.sample_rate,
-		audio.samples.size(),
-		audio.get_duration()
+		audio.SampleRate,
+		audio.SampleCount,
+		audio.Duration
 	]
 
 
@@ -53,4 +54,3 @@ func toggle_play_back(toggled: bool) -> void:
 		buffer_player.play()
 	else:
 		buffer_player.pause()
-

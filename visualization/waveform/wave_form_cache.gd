@@ -20,25 +20,29 @@ func set_samples(new_samples: PackedFloat32Array) -> void:
         max_amplitude = 1.0
 
 
-func build(columns: int, normalize: bool) -> void:
-
+func build(columns: int, normalize: bool, range_begin: int = 0, range_end: int = -1) -> void:
+    var sample_count: int = samples.size()
     if columns <= 0 or samples.is_empty():
         return
+    
+    range_end = min(range_end, sample_count)
+    if range_end < 0:
+        range_end = sample_count
 
-    var samples_per_column: float = float(samples.size()) / float(columns)
+    var samples_per_column: float = float(range_end - range_begin) / float(columns)
 
     mins.resize(columns)
     maxs.resize(columns)
 
     for x in range(columns):
 
-        var start: int = int(x * samples_per_column)
-        var end: int = int((x + 1) * samples_per_column)
+        var start: int = range_begin + int(floor(x * samples_per_column))
+        var end: int = range_begin + int(ceil((x + 1) * samples_per_column))
 
         var min_val: float = 1.0
         var max_val: float = -1.0
 
-        for i in range(start, min(end, samples.size())):
+        for i in range(start, min(end, sample_count)):
 
             var sample: float = samples[i]
 

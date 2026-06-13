@@ -4,6 +4,7 @@
     "ALAW",
     "callv",
     "ceili",
+    "floori",
     "lerp",
     "Mathf",
     "maxs",

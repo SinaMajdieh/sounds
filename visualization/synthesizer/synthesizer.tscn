@@ -46,7 +46,7 @@ allow_unpress = true
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5ccs"]
 
-[sub_resource type="Resource" id="Resource_d7j5s"]
+[sub_resource type="Resource" id="Resource_h5ccs"]
 script = ExtResource("5_l2eyb")
 metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
@@ -59,7 +59,7 @@ variation_opentype = {
 2003265652: 200
 }
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_h5ccs"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_meug3"]
 allow_unpress = true
 
 [node name="Synthesizer" type="PanelContainer" unique_id=785736879 node_paths=PackedStringArray("tuner_group")]
@@ -156,7 +156,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_h5ccs")
 script = ExtResource("4_jt5br")
 color = Color(0.38431373, 0.40784314, 0.5019608, 1)
 line_width = 3.0
-strategy = SubResource("Resource_d7j5s")
+strategy = SubResource("Resource_h5ccs")
 
 [node name="TunerGroupScroll" type="ScrollContainer" parent="Layout" unique_id=260331455]
 layout_mode = 2
@@ -217,7 +217,7 @@ visible = false
 layout_mode = 2
 
 [node name="Playback" parent="SampleTuner/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1225608333, 646339270, 2146417936) index="3" unique_id=689463971]
-button_group = SubResource("ButtonGroup_h5ccs")
+button_group = SubResource("ButtonGroup_meug3")
 
 [node name="RemoveButton" type="Button" parent="SampleTuner/Layout" parent_id_path=PackedInt32Array(1225608333, 2028982350) index="2" unique_id=1928188116 node_paths=PackedStringArray("tuner")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)

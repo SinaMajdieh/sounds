@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://l5vy5ey5h8qq"]
+
+[ext_resource type="Script" uid="uid://dqp1oe3dyoby0" path="res://test/test_reconstruction/dsp.gd" id="1_tu517"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="2_qv3qe"]
+[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://ui/playback_button.gd" id="3_aigyi"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="4_vwenv"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="6_61mkb"]
+[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_se4p7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p31qg"]
+bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0k1hb"]
+
+[sub_resource type="FontVariation" id="FontVariation_4kdwh"]
+variation_opentype = {
+1869640570: 28,
+2003265652: 200
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxash"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kdwh"]
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1um6"]
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kdwh"]
+
+[sub_resource type="Resource" id="Resource_qxash"]
+script = ExtResource("7_se4p7")
+metadata/_custom_type_script = "uid://dyehyenjr3ncv"
+
+[node name="Dft" type="PanelContainer" unique_id=1637579692 node_paths=PackedStringArray("waveform_renderer", "slider_label", "slider", "samples_per_segment_label", "segment_duration_label", "frequency_per_segment_label", "frequency_spacing_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p31qg")
+script = ExtResource("1_tu517")
+waveform_renderer = NodePath("MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView/WaveformRenderer")
+slider_label = NodePath("MarginContainer/Layout/Segments/Label")
+slider = NodePath("MarginContainer/Layout/Segments/HSlider")
+samples_per_segment_label = NodePath("MarginContainer/Layout/Info/SamplesPerSegment/Value")
+segment_duration_label = NodePath("MarginContainer/Layout/Info/SegmentDuration/Value")
+frequency_per_segment_label = NodePath("MarginContainer/Layout/Info/FrequencyPerSegment/Value")
+frequency_spacing_label = NodePath("MarginContainer/Layout/Info/FrequencySpacing/Value")
+num_segments = 300
+wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (2).wav"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=309782361]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer" unique_id=1874262102]
+layout_mode = 2
+
+[node name="Segments" type="HBoxContainer" parent="MarginContainer/Layout" unique_id=816182856]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/Layout/Segments" unique_id=945040403]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Segment [1  /  1]"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/Layout/Segments" unique_id=716407018]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Layout" unique_id=1450856119]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0k1hb")
+
+[node name="Info" type="VBoxContainer" parent="MarginContainer/Layout" unique_id=2013261335]
+layout_mode = 2
+
+[node name="SamplesPerSegment" type="HBoxContainer" parent="MarginContainer/Layout/Info" unique_id=857170401]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Layout/Info/SamplesPerSegment" unique_id=1395322753]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "Samples per Segment: "
+
+[node name="Value" type="Label" parent="MarginContainer/Layout/Info/SamplesPerSegment" unique_id=215851218]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "4800"
+
+[node name="SegmentDuration" type="HBoxContainer" parent="MarginContainer/Layout/Info" unique_id=700788966]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Layout/Info/SegmentDuration" unique_id=524759438]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "Segment Duration: "
+
+[node name="Value" type="Label" parent="MarginContainer/Layout/Info/SegmentDuration" unique_id=1177779693]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.92156863, 0.627451, 0.6745098, 1)
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "100 ms"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Layout/Info" unique_id=1939641520]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qxash")
+
+[node name="FrequencyPerSegment" type="HBoxContainer" parent="MarginContainer/Layout/Info" unique_id=542598348]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Layout/Info/FrequencyPerSegment" unique_id=1840942944]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "Frequency per Segment: "
+
+[node name="Value" type="Label" parent="MarginContainer/Layout/Info/FrequencyPerSegment" unique_id=1270037205]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "2401"
+
+[node name="FrequencySpacing" type="HBoxContainer" parent="MarginContainer/Layout/Info" unique_id=1064368055]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Layout/Info/FrequencySpacing" unique_id=640670144]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "Frequency Spacing: "
+
+[node name="Value" type="Label" parent="MarginContainer/Layout/Info/FrequencySpacing" unique_id=1575762862]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.5372549, 0.7058824, 0.98039216, 1)
+theme_override_fonts/font = SubResource("FontVariation_4kdwh")
+theme_override_font_sizes/font_size = 25
+text = "10.00 Hz"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout" unique_id=1940801211]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4kdwh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Layout/PanelContainer" unique_id=471193321]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer" unique_id=1880698137]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k1um6")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/PanelContainer" unique_id=1817381794]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Play" type="CheckButton" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1551339081 node_paths=PackedStringArray("audio_player")]
+modulate = Color(0.8039216, 0.8392157, 0.95686275, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_type_variation = &"FlatCheckButtom"
+icon = ExtResource("2_qv3qe")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_aigyi")
+audio_player = NodePath("")
+toggled_icon = ExtResource("4_vwenv")
+untoggled_icon = ExtResource("2_qv3qe")
+
+[node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer" unique_id=286250310]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"WaveformView"
+
+[node name="BaseLine" type="ColorRect" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=560530860]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.42352942, 0.4392157, 0.5254902, 1)
+
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=181100490]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4kdwh")
+script = ExtResource("6_61mkb")
+color = Color(0.79607844, 0.6509804, 0.96862745, 1)
+line_width = 3.0
+strategy = SubResource("Resource_qxash")
