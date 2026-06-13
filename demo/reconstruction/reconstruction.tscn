@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://l5vy5ey5h8qq"]
 
 [ext_resource type="Script" uid="uid://dqp1oe3dyoby0" path="res://demo/reconstruction/reconstruction.gd" id="1_v338x"]
-[ext_resource type="Script" uid="uid://srktrganjmej" path="res://ui/scrubber_slider.gd" id="2_0gycy"]
-[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="3_2m6op"]
-[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://ui/playback_button.gd" id="4_y47gu"]
-[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="5_v11yo"]
+[ext_resource type="Script" uid="uid://srktrganjmej" path="res://UI/scrubber_slider.gd" id="2_0gycy"]
+[ext_resource type="Script" uid="uid://cs088fmxle47e" path="res://demo/reconstruction/info.gd" id="3_0gycy"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="3_2m6op"]
+[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://UI/playback_button.gd" id="4_y47gu"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="5_v11yo"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/renderer/waveform_renderer.gd" id="6_00o2f"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_w3is8"]
 [ext_resource type="Script" uid="uid://bcqs201o1rc3v" path="res://visualization/playback_cursor/active/active_cursor.gd" id="8_wns8s"]
@@ -41,7 +42,7 @@ shader = ExtResource("9_jboq7")
 shader_parameter/active = false
 shader_parameter/active_color = Color(0, 0, 0, 1)
 
-[node name="Dft" type="PanelContainer" unique_id=1637579692 node_paths=PackedStringArray("waveform_renderer", "audio_player", "slider_label", "slider", "samples_per_segment_label", "segment_duration_label", "frequency_per_segment_label", "frequency_spacing_label")]
+[node name="Dft" type="PanelContainer" unique_id=1637579692 node_paths=PackedStringArray("waveform_renderer", "audio_player", "info", "slider_label", "slider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,16 +52,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p31qg")
 script = ExtResource("1_v338x")
-waveform_renderer = NodePath("MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView/WaveformRenderer")
-audio_player = NodePath("SampleBufferPlayer")
-slider_label = NodePath("MarginContainer/Layout/Segments/Label")
-slider = NodePath("MarginContainer/Layout/Segments/HSlider")
-samples_per_segment_label = NodePath("MarginContainer/Layout/Info/SamplesPerSegment/Value")
-segment_duration_label = NodePath("MarginContainer/Layout/Info/SegmentDuration/Value")
-frequency_per_segment_label = NodePath("MarginContainer/Layout/Info/FrequencyPerSegment/Value")
-frequency_spacing_label = NodePath("MarginContainer/Layout/Info/FrequencySpacing/Value")
-num_segments = 100
-wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
+waveform_renderer = NodePath("MarginContainer/Layout/Waveform/HBoxContainer/WaveformView/WaveformRenderer")
+audio_player = NodePath("BufferPlayer")
+info = NodePath("MarginContainer/Layout/Info")
+slider_label = NodePath("MarginContainer/Layout/Segments/SegmentsLabel")
+slider = NodePath("MarginContainer/Layout/Segments/Scrubber")
+num_segments = 30
+selected_segment_num = 20
+wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/hello.wav"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=309782361]
 layout_mode = 2
@@ -76,27 +75,32 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="MarginContainer/Layout/Segments" unique_id=945040403]
+[node name="SegmentsLabel" type="Label" parent="MarginContainer/Layout/Segments" unique_id=945040403]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Segment [1  /  1]"
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/Layout/Segments" unique_id=716407018 node_paths=PackedStringArray("audio_player")]
+[node name="Scrubber" type="HSlider" parent="MarginContainer/Layout/Segments" unique_id=716407018 node_paths=PackedStringArray("audio_player")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.0
 script = ExtResource("2_0gycy")
-audio_player = NodePath("../../../../SampleBufferPlayer")
+audio_player = NodePath("../../../../BufferPlayer")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Layout" unique_id=1450856119]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_0k1hb")
 
-[node name="Info" type="VBoxContainer" parent="MarginContainer/Layout" unique_id=2013261335]
+[node name="Info" type="VBoxContainer" parent="MarginContainer/Layout" unique_id=2013261335 node_paths=PackedStringArray("samples_per_segment_label", "segment_duration_label", "frequency_per_segment_label", "frequency_spacing_label")]
 layout_mode = 2
+script = ExtResource("3_0gycy")
+samples_per_segment_label = NodePath("SamplesPerSegment/Value")
+segment_duration_label = NodePath("SegmentDuration/Value")
+frequency_per_segment_label = NodePath("FrequencyPerSegment/Value")
+frequency_spacing_label = NodePath("FrequencySpacing/Value")
 
 [node name="SamplesPerSegment" type="HBoxContainer" parent="MarginContainer/Layout/Info" unique_id=857170401]
 layout_mode = 2
@@ -173,23 +177,23 @@ theme_override_fonts/font = SubResource("FontVariation_4kdwh")
 theme_override_font_sizes/font_size = 25
 text = "10.00 Hz"
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout" unique_id=1940801211]
+[node name="Waveform" type="PanelContainer" parent="MarginContainer/Layout" unique_id=1940801211]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4kdwh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Layout/PanelContainer" unique_id=471193321]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Layout/Waveform" unique_id=471193321]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer" unique_id=1880698137]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Layout/Waveform/HBoxContainer" unique_id=1880698137]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_k1um6")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/PanelContainer" unique_id=1817381794]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Layout/Waveform/HBoxContainer/PanelContainer" unique_id=1817381794]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Play" type="CheckButton" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1551339081 node_paths=PackedStringArray("audio_player")]
+[node name="Play" type="CheckButton" parent="MarginContainer/Layout/Waveform/HBoxContainer/PanelContainer/HBoxContainer" unique_id=1551339081 node_paths=PackedStringArray("audio_player")]
 modulate = Color(0.8039216, 0.8392157, 0.95686275, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -198,11 +202,11 @@ icon = ExtResource("3_2m6op")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_y47gu")
-audio_player = NodePath("../../../../../../../SampleBufferPlayer")
+audio_player = NodePath("../../../../../../../BufferPlayer")
 toggled_icon = ExtResource("5_v11yo")
 untoggled_icon = ExtResource("3_2m6op")
 
-[node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer" unique_id=286250310]
+[node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout/Waveform/HBoxContainer" unique_id=286250310]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -210,13 +214,13 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme_type_variation = &"WaveformView"
 
-[node name="BaseLine" type="ColorRect" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=560530860]
+[node name="BaseLine" type="ColorRect" parent="MarginContainer/Layout/Waveform/HBoxContainer/WaveformView" unique_id=560530860]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0.42352942, 0.4392157, 0.5254902, 1)
 
-[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=181100490]
+[node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/Waveform/HBoxContainer/WaveformView" unique_id=181100490]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4kdwh")
 script = ExtResource("6_00o2f")
@@ -224,15 +228,15 @@ color = Color(0.79607844, 0.6509804, 0.96862745, 1)
 line_width = 3.0
 strategy = SubResource("Resource_qxash")
 
-[node name="ActiveCursor" type="Control" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=919458725 node_paths=PackedStringArray("player", "waveform_renderer")]
+[node name="ActiveCursor" type="Control" parent="MarginContainer/Layout/Waveform/HBoxContainer/WaveformView" unique_id=919458725 node_paths=PackedStringArray("player", "waveform_renderer")]
 layout_mode = 2
 script = ExtResource("8_wns8s")
-player = NodePath("../../../../../../SampleBufferPlayer")
+player = NodePath("../../../../../../BufferPlayer")
 waveform_renderer = NodePath("../WaveformRenderer")
 shader = SubResource("ShaderMaterial_t0gfx")
 active_color = Color(0.9607843, 0.7607843, 0.90588236, 1)
 metadata/_custom_type_script = "uid://bcqs201o1rc3v"
 
-[node name="SampleBufferPlayer" type="Node" parent="." unique_id=1056076874]
+[node name="BufferPlayer" type="Node" parent="." unique_id=1056076874]
 script = ExtResource("10_s3dpa")
 buffer_length = 0.1

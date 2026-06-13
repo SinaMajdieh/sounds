@@ -42,8 +42,8 @@ func _begin_scrub() -> void:
 
 
 func _update_scrub() -> void:
-	audio_player.set_speed(1)
 	audio_player.seek_progress(value)
+	audio_player.set_speed(1)
 
 
 
@@ -52,3 +52,4 @@ func _end_scrub() -> void:
 		return
 	_scrubbing = false
 	audio_player.end_scrub()
+	audio_player.seek_progress(value)

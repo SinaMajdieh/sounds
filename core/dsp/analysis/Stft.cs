@@ -13,8 +13,7 @@ public partial class Stft : RefCounted
         if (signal.SampleRate <= 0)
             throw new ArgumentOutOfRangeException(nameof(signal.SampleRate));
 
-        if (samplesPerSegment <= 0)
-            throw new ArgumentOutOfRangeException(nameof(samplesPerSegment));
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(samplesPerSegment);
 
         if (signal.Samples.Length == 0)
             return new StftResult([], signal.SampleRate, 0);

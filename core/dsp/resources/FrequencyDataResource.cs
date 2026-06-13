@@ -32,4 +32,10 @@ public partial class FrequencyDataResource : Resource
         };
     }
 
+    public override string ToString()
+    {
+        return $"Frequency: {Frequency}, Amplitude: {Amplitude}, Phase: {Phase}";
+    }
+
+
 }

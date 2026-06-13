@@ -3,19 +3,15 @@ extends Node
 @export_category("Elements")
 @export var waveform_renderer: WaveformRenderer
 @export var audio_player: BufferPlayer
+@export var info: Control
 
 @export_subgroup("Slider")
 @export var slider_label: Label
 @export var slider: HSlider
 
-@export_subgroup("Labels")
-@export var samples_per_segment_label: Label
-@export var segment_duration_label: Label
-@export var frequency_per_segment_label: Label
-@export var frequency_spacing_label: Label
-
 @export_category("Data")
 @export var num_segments: int = 1
+@export var selected_segment_num: int = -1
 
 @export_global_file("*.wav") var wav_path: String
 
@@ -29,15 +25,20 @@ var current_segment_index: int = -1
 
 func _ready() -> void:
 	slider.value_changed.connect(_on_slider_value_changed)
-
-	open_wav()
-	apply_stft()
-	reconstruct()
-	audio_player.load_signal(reconstructed_signal)
-	update_info()
-
+	
+	demo_reconstruction()
+	
 	slider.value = 0.0
 	_on_slider_value_changed(slider.value)
+
+
+func demo_reconstruction() -> void:
+	open_wav()
+	apply_stft()
+	take_top_frequencies(selected_segment_num)
+	reconstruct()
+	audio_player.load_signal(reconstructed_signal)
+	info.update_info(source_signal, samples_per_segment, num_segments)
 
 
 func _on_slider_value_changed(value: float) -> void:
@@ -105,18 +106,15 @@ func draw_form(begin: int, end: int) -> void:
 	waveform_renderer.draw(reconstructed_signal.Samples, begin, end)
 
 
-func update_info() -> void:
-	if not source_signal:
+## Taking the specified number of top frequencies in each segment
+func take_top_frequencies(num: int) -> void:
+	if num <= 0:
 		return
-
-	var segment_duration_ms := int(
-		samples_per_segment / float(source_signal.SampleRate) * 1000.0
-	)
-
-	samples_per_segment_label.text = str(samples_per_segment)
-	segment_duration_label.text = "%d ms" % segment_duration_ms
-
-	var nyquist := int(source_signal.SampleRate / 2.0 + 1)
-	frequency_per_segment_label.text = str(nyquist)
-
-	frequency_spacing_label.text = "%d Hz" % num_segments
+	for segment: StftSegmentResource in stft.Segments:
+		segment.Spectrum.sort_custom(
+			func(a, b):
+				if abs(a.Frequency) > (b.Frequency):
+					return true
+				return false 
+		)
+		segment.Spectrum = segment.Spectrum.slice(0, num)
