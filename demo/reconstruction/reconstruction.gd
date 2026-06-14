@@ -2,6 +2,7 @@ extends Node
 
 @export_category("Elements")
 @export var waveform_renderer: WaveformRenderer
+@export var audio_player: BufferPlayer
 
 @export_subgroup("Slider")
 @export var slider_label: Label
@@ -32,16 +33,15 @@ func _ready() -> void:
 	open_wav()
 	apply_stft()
 	reconstruct()
+	audio_player.load_signal(reconstructed_signal)
 	update_info()
 
 	slider.value = 0.0
 	_on_slider_value_changed(slider.value)
 
 
-
 func _on_slider_value_changed(value: float) -> void:
 	if not stft or stft.Segments.is_empty():
-		print("hello")
 		return
 
 	value = clamp(value, 0.0, 1.0)

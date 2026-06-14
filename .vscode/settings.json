@@ -6,6 +6,7 @@
     "ceili",
     "floori",
     "lerp",
+    "lerpf",
     "Mathf",
     "maxs",
     "MULAW",

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drbta0k11828y"]
 
-[ext_resource type="Script" uid="uid://y8o81pjxk3ni" path="res://visualization/frequency_data_tuner/frequency_data_tuner.gd" id="1_dehqr"]
+[ext_resource type="Script" uid="uid://y8o81pjxk3ni" path="res://features/tuner/frequency_data_tuner/frequency_data_tuner.gd" id="1_dehqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvgwx"]
 bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)

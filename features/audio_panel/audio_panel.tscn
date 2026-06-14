@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bgrll5wivihuk"]
 
-[ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://visualization/audio_panel/audio_panel.gd" id="1_xb8ug"]
+[ext_resource type="Script" uid="uid://02s6tc3wpxtb" path="res://features/audio_panel/audio_panel.gd" id="1_xb8ug"]
 [ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://ui/playback_button.gd" id="3_bm4xp"]
-[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="3_r5ssu"]
-[ext_resource type="Shader" uid="uid://cjkek3wuwq4ye" path="res://visualization/audio_playback_cursor/bloom/bloom_trail.gdshader" id="4_bkc7y"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/renderer/waveform_renderer.gd" id="3_r5ssu"]
+[ext_resource type="Shader" uid="uid://cjkek3wuwq4ye" path="res://visualization/playback_cursor/bloom/bloom_trail.gdshader" id="4_bkc7y"]
 [ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="4_qbnmo"]
-[ext_resource type="Script" uid="uid://cildu7twcmhx3" path="res://audio/audio_player/sample_buffer_player.gd" id="4_qoff4"]
-[ext_resource type="PackedScene" uid="uid://bcpqc1ohrfgqx" path="res://visualization/audio_playback_cursor/audio_playback_cursor.tscn" id="4_r5ssu"]
+[ext_resource type="Script" uid="uid://cildu7twcmhx3" path="res://features/playback/buffer_player.gd" id="4_qoff4"]
 [ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="6_lpmn8"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_bm4xp"]
 [ext_resource type="Texture2D" uid="uid://dmnxl7rjdokac" path="res://assets/icons/wave.svg" id="7_mglm0"]
+[ext_resource type="Script" uid="uid://c5bjmyadwnqae" path="res://visualization/playback_cursor/bloom/bloom_cursor.gd" id="8_s4ogy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mglm0"]
 bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
@@ -23,12 +23,12 @@ bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
 script = ExtResource("7_bm4xp")
 metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5ssu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0118"]
 shader = ExtResource("4_bkc7y")
 shader_parameter/playhead_pixel_x = 0.0
 shader_parameter/glow_pixel_width = 100.0
 shader_parameter/glow_color = Color(1, 1, 1, 1)
-shader_parameter/base_color = Color(0.381, 0.768, 0.356, 1)
+shader_parameter/base_color = Color(0.38, 0.77, 0.35, 1)
 
 [node name="AudioPlayerPanel" type="PanelContainer" unique_id=377076492 node_paths=PackedStringArray("wave_form_draw", "audio_name_label", "audio_info_label", "buffer_player", "play_button", "render_button")]
 anchors_preset = 15
@@ -113,12 +113,14 @@ script = ExtResource("3_r5ssu")
 color = Color(0.9529412, 0.54509807, 0.65882355, 1)
 strategy = SubResource("Resource_qbnmo")
 
-[node name="AudioPlaybackCursor" parent="MarginContainer/Layout/HBoxContainer/WaveformView" unique_id=1990651057 node_paths=PackedStringArray("player", "waveform_renderer") instance=ExtResource("4_r5ssu")]
+[node name="BloomCursor" type="Control" parent="MarginContainer/Layout/HBoxContainer/WaveformView" unique_id=267753630 node_paths=PackedStringArray("player", "waveform_renderer")]
 layout_mode = 2
+script = ExtResource("8_s4ogy")
 player = NodePath("../../../../../SampleBufferPlayer")
 waveform_renderer = NodePath("../WaveformRenderer")
-shader = SubResource("ShaderMaterial_r5ssu")
+shader = SubResource("ShaderMaterial_w0118")
 glow_color = Color(0.7764706, 0.8156863, 0.9607843, 1)
+metadata/_custom_type_script = "uid://c5bjmyadwnqae"
 
 [node name="Info" type="Label" parent="MarginContainer/Layout" unique_id=572103996]
 layout_mode = 2

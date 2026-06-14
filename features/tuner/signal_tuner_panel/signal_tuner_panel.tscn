@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c3eke133pfjam"]
 
-[ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://visualization/signal_tuner_panel/signal_tuner.gd" id="1_2s88k"]
-[ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://visualization/frequency_data_tuner/frequency_data_tuner.tscn" id="1_x5ub1"]
+[ext_resource type="Script" uid="uid://cwj7sxr7f6ati" path="res://features/tuner/signal_tuner_panel/signal_tuner.gd" id="1_2s88k"]
+[ext_resource type="PackedScene" uid="uid://drbta0k11828y" path="res://features/tuner/frequency_data_tuner/frequency_data_tuner.tscn" id="1_x5ub1"]
 [ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="3_2whvl"]
-[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_fkqto"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/renderer/waveform_renderer.gd" id="4_fkqto"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_fkqto"]
 [ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="5_g6mbo"]
-[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://audio/audio_player/real_time_player.gd" id="8_rwon8"]
+[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://features/playback/real_time_player.gd" id="8_rwon8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2whvl"]
 bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)

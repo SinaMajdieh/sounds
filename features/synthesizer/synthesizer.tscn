@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://b65lg7ypwihre"]
 
 [ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="1_ggaod"]
-[ext_resource type="Script" uid="uid://cely2v8npfdqt" path="res://visualization/synthesizer/synthesizer.gd" id="1_oyvc2"]
-[ext_resource type="Script" uid="uid://b0bsn5eetl263" path="res://visualization/synthesizer/synthesizer_panel.gd" id="1_wkqdl"]
+[ext_resource type="Script" uid="uid://cely2v8npfdqt" path="res://features/synthesizer/synthesizer.gd" id="1_oyvc2"]
+[ext_resource type="Script" uid="uid://b0bsn5eetl263" path="res://features/synthesizer/synthesizer_panel.gd" id="1_wkqdl"]
 [ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="3_cmid8"]
-[ext_resource type="Script" uid="uid://c23xpwnmv6oiy" path="res://visualization/synthesizer/buttons/synthesizer_playback.gd" id="3_l2eyb"]
-[ext_resource type="Script" uid="uid://66sb0dewgbgk" path="res://visualization/synthesizer/tuner_group.gd" id="3_rcg87"]
-[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="4_jt5br"]
-[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://audio/audio_player/real_time_player.gd" id="5_ggaod"]
+[ext_resource type="Script" uid="uid://c23xpwnmv6oiy" path="res://features/synthesizer/buttons/synthesizer_playback.gd" id="3_l2eyb"]
+[ext_resource type="Script" uid="uid://66sb0dewgbgk" path="res://features/synthesizer/tuner_group.gd" id="3_rcg87"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/renderer/waveform_renderer.gd" id="4_jt5br"]
+[ext_resource type="Script" uid="uid://c50x5b8qoigj" path="res://features/playback/real_time_player.gd" id="5_ggaod"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="5_l2eyb"]
-[ext_resource type="PackedScene" uid="uid://c3eke133pfjam" path="res://visualization/signal_tuner_panel/signal_tuner_panel.tscn" id="6_oyvc2"]
-[ext_resource type="Script" uid="uid://cro2n2i35jd3v" path="res://visualization/synthesizer/buttons/add_tuner_button.gd" id="10_o8keg"]
-[ext_resource type="ColorPalette" uid="uid://dt3j38rr3fg04" path="res://visualization/synthesizer/palatte.tres" id="10_u03rd"]
+[ext_resource type="PackedScene" uid="uid://c3eke133pfjam" path="res://features/tuner/signal_tuner_panel/signal_tuner_panel.tscn" id="6_oyvc2"]
+[ext_resource type="Script" uid="uid://cro2n2i35jd3v" path="res://features/synthesizer/buttons/add_tuner_button.gd" id="10_o8keg"]
+[ext_resource type="ColorPalette" uid="uid://dt3j38rr3fg04" path="res://features/synthesizer/palette.tres" id="10_u03rd"]
 [ext_resource type="Texture2D" uid="uid://b1xcmnwedcej1" path="res://assets/icons/remove.svg" id="11_arn4b"]
 [ext_resource type="Texture2D" uid="uid://cebp6k8ln0nfe" path="res://assets/icons/add.svg" id="11_ra1fe"]
-[ext_resource type="Script" uid="uid://dod2kfalommvx" path="res://visualization/synthesizer/buttons/tuner_remove_button.gd" id="12_h5ccs"]
-[ext_resource type="Script" uid="uid://c8a8hu2te82p7" path="res://visualization/synthesizer/signal_count.gd" id="13_6i3rb"]
+[ext_resource type="Script" uid="uid://dod2kfalommvx" path="res://features/synthesizer/buttons/tuner_remove_button.gd" id="12_h5ccs"]
+[ext_resource type="Script" uid="uid://c8a8hu2te82p7" path="res://features/synthesizer/signal_count.gd" id="13_6i3rb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkqdl"]
 content_margin_left = 18.0
@@ -59,7 +59,7 @@ variation_opentype = {
 2003265652: 200
 }
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_meug3"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_vsbd7"]
 allow_unpress = true
 
 [node name="Synthesizer" type="PanelContainer" unique_id=785736879 node_paths=PackedStringArray("tuner_group")]
@@ -217,7 +217,7 @@ visible = false
 layout_mode = 2
 
 [node name="Playback" parent="SampleTuner/Layout/FrequencyDataTuner/MarginContainer/SpinBoxes" parent_id_path=PackedInt32Array(1225608333, 646339270, 2146417936) index="3" unique_id=689463971]
-button_group = SubResource("ButtonGroup_meug3")
+button_group = SubResource("ButtonGroup_vsbd7")
 
 [node name="RemoveButton" type="Button" parent="SampleTuner/Layout" parent_id_path=PackedInt32Array(1225608333, 2028982350) index="2" unique_id=1928188116 node_paths=PackedStringArray("tuner")]
 modulate = Color(0.49803922, 0.5176471, 0.6117647, 1)

@@ -5,6 +5,7 @@ extends WaveformStrategy
 func draw(canvas, cache, progress, width, height, color, line_width) -> void:
 
     var center_y: float = height * 0.5
+    canvas.draw_line(Vector2(0, center_y), Vector2(width * progress, center_y), color, line_width)
     var visible_columns: int = int(cache.mins.size() * progress)
 
     if visible_columns <= 0:

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dku3owa0xok61"]
 
-[ext_resource type="Script" uid="uid://b6c5tiyr07o4s" path="res://demo/audio-panel-demo/audio_panel_demo.gd" id="1_8fp2t"]
-[ext_resource type="PackedScene" uid="uid://bgrll5wivihuk" path="res://visualization/audio_panel/audio_panel.tscn" id="2_7t2qv"]
-[ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_7t2qv"]
+[ext_resource type="Script" uid="uid://b6c5tiyr07o4s" path="res://demo/audio_panel/audio_panel_demo.gd" id="1_bywck"]
+[ext_resource type="PackedScene" uid="uid://bgrll5wivihuk" path="res://features/audio_panel/audio_panel.tscn" id="2_7lrsu"]
+[ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_2bkam"]
 
 [sub_resource type="Resource" id="Resource_01yjt"]
-script = ExtResource("3_7t2qv")
+script = ExtResource("3_2bkam")
 metadata/_custom_type_script = "uid://bmasr7j56qsvb"
 
 [node name="AudioPanelDemo" type="Control" unique_id=1097978904 node_paths=PackedStringArray("panel")]
@@ -15,11 +15,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8fp2t")
+script = ExtResource("1_bywck")
 panel = NodePath("AudioPlayerPanel")
-wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (3).wav"
+wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
 
-[node name="AudioPlayerPanel" parent="." unique_id=377076492 instance=ExtResource("2_7t2qv")]
+[node name="AudioPlayerPanel" parent="." unique_id=377076492 instance=ExtResource("2_7lrsu")]
 layout_mode = 1
 
 [node name="WaveformRenderer" parent="AudioPlayerPanel/MarginContainer/Layout/HBoxContainer/WaveformView" parent_id_path=PackedInt32Array(377076492, 1042216897) index="0" unique_id=1634075723]

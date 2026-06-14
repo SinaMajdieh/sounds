@@ -4,7 +4,7 @@ extends Control
 @export var wave_form_draw: WaveformRenderer
 @export var audio_name_label: Label
 @export var audio_info_label: Label
-@export var buffer_player: SampleBufferPlayer
+@export var buffer_player: BufferPlayer
 @export_subgroup("Buttons")
 @export var play_button: CheckButton
 @export var render_button: Button
@@ -15,7 +15,6 @@ var audio: SignalResource = SignalResource.new()
 
 
 func _ready() -> void:
-	play_button.toggled.connect(toggle_play_back)
 	render_button.pressed.connect(render_waveform)
 	render_waveform()
 
@@ -48,9 +47,3 @@ func render_waveform() -> void:
 		audio.Duration
 	]
 
-
-func toggle_play_back(toggled: bool) -> void:
-	if toggled:
-		buffer_player.play()
-	else:
-		buffer_player.pause()

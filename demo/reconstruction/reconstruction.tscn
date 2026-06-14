@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://l5vy5ey5h8qq"]
 
-[ext_resource type="Script" uid="uid://dqp1oe3dyoby0" path="res://test/test_reconstruction/dsp.gd" id="1_tu517"]
-[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="2_qv3qe"]
-[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://ui/playback_button.gd" id="3_aigyi"]
-[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="4_vwenv"]
-[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/wave_form_renderer.gd" id="6_61mkb"]
-[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_se4p7"]
+[ext_resource type="Script" uid="uid://dqp1oe3dyoby0" path="res://demo/reconstruction/reconstruction.gd" id="1_v338x"]
+[ext_resource type="Script" uid="uid://srktrganjmej" path="res://ui/scrubber_slider.gd" id="2_0gycy"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="3_2m6op"]
+[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://ui/playback_button.gd" id="4_y47gu"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="5_v11yo"]
+[ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/renderer/waveform_renderer.gd" id="6_00o2f"]
+[ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_w3is8"]
+[ext_resource type="Script" uid="uid://bcqs201o1rc3v" path="res://visualization/playback_cursor/active/active_cursor.gd" id="8_wns8s"]
+[ext_resource type="Shader" uid="uid://c1xapoqa7rn5f" path="res://visualization/playback_cursor/active/active_cursor.gdshader" id="9_jboq7"]
+[ext_resource type="Script" uid="uid://cildu7twcmhx3" path="res://features/playback/buffer_player.gd" id="10_s3dpa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p31qg"]
 bg_color = Color(0.06666667, 0.06666667, 0.105882354, 1)
@@ -29,10 +33,15 @@ bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4kdwh"]
 
 [sub_resource type="Resource" id="Resource_qxash"]
-script = ExtResource("7_se4p7")
+script = ExtResource("7_w3is8")
 metadata/_custom_type_script = "uid://dyehyenjr3ncv"
 
-[node name="Dft" type="PanelContainer" unique_id=1637579692 node_paths=PackedStringArray("waveform_renderer", "slider_label", "slider", "samples_per_segment_label", "segment_duration_label", "frequency_per_segment_label", "frequency_spacing_label")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0gfx"]
+shader = ExtResource("9_jboq7")
+shader_parameter/active = false
+shader_parameter/active_color = Color(0, 0, 0, 1)
+
+[node name="Dft" type="PanelContainer" unique_id=1637579692 node_paths=PackedStringArray("waveform_renderer", "audio_player", "slider_label", "slider", "samples_per_segment_label", "segment_duration_label", "frequency_per_segment_label", "frequency_spacing_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -41,16 +50,17 @@ offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p31qg")
-script = ExtResource("1_tu517")
+script = ExtResource("1_v338x")
 waveform_renderer = NodePath("MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView/WaveformRenderer")
+audio_player = NodePath("SampleBufferPlayer")
 slider_label = NodePath("MarginContainer/Layout/Segments/Label")
 slider = NodePath("MarginContainer/Layout/Segments/HSlider")
 samples_per_segment_label = NodePath("MarginContainer/Layout/Info/SamplesPerSegment/Value")
 segment_duration_label = NodePath("MarginContainer/Layout/Info/SegmentDuration/Value")
 frequency_per_segment_label = NodePath("MarginContainer/Layout/Info/FrequencyPerSegment/Value")
 frequency_spacing_label = NodePath("MarginContainer/Layout/Info/FrequencySpacing/Value")
-num_segments = 300
-wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (2).wav"
+num_segments = 100
+wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=309782361]
 layout_mode = 2
@@ -71,13 +81,14 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Segment [1  /  1]"
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/Layout/Segments" unique_id=716407018]
+[node name="HSlider" type="HSlider" parent="MarginContainer/Layout/Segments" unique_id=716407018 node_paths=PackedStringArray("audio_player")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.001
-value = 1.0
+step = 0.0
+script = ExtResource("2_0gycy")
+audio_player = NodePath("../../../../SampleBufferPlayer")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Layout" unique_id=1450856119]
 layout_mode = 2
@@ -183,13 +194,13 @@ modulate = Color(0.8039216, 0.8392157, 0.95686275, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"FlatCheckButtom"
-icon = ExtResource("2_qv3qe")
+icon = ExtResource("3_2m6op")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("3_aigyi")
-audio_player = NodePath("")
-toggled_icon = ExtResource("4_vwenv")
-untoggled_icon = ExtResource("2_qv3qe")
+script = ExtResource("4_y47gu")
+audio_player = NodePath("../../../../../../../SampleBufferPlayer")
+toggled_icon = ExtResource("5_v11yo")
+untoggled_icon = ExtResource("3_2m6op")
 
 [node name="WaveformView" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer" unique_id=286250310]
 clip_contents = true
@@ -208,7 +219,20 @@ color = Color(0.42352942, 0.4392157, 0.5254902, 1)
 [node name="WaveformRenderer" type="PanelContainer" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=181100490]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4kdwh")
-script = ExtResource("6_61mkb")
+script = ExtResource("6_00o2f")
 color = Color(0.79607844, 0.6509804, 0.96862745, 1)
 line_width = 3.0
 strategy = SubResource("Resource_qxash")
+
+[node name="ActiveCursor" type="Control" parent="MarginContainer/Layout/PanelContainer/HBoxContainer/WaveformView" unique_id=919458725 node_paths=PackedStringArray("player", "waveform_renderer")]
+layout_mode = 2
+script = ExtResource("8_wns8s")
+player = NodePath("../../../../../../SampleBufferPlayer")
+waveform_renderer = NodePath("../WaveformRenderer")
+shader = SubResource("ShaderMaterial_t0gfx")
+active_color = Color(0.9607843, 0.7607843, 0.90588236, 1)
+metadata/_custom_type_script = "uid://bcqs201o1rc3v"
+
+[node name="SampleBufferPlayer" type="Node" parent="." unique_id=1056076874]
+script = ExtResource("10_s3dpa")
+buffer_length = 0.1
