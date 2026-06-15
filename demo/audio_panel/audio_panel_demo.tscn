@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bgrll5wivihuk" path="res://features/audio_panel/audio_panel.tscn" id="2_7lrsu"]
 [ext_resource type="Script" uid="uid://bmasr7j56qsvb" path="res://visualization/waveform/strategies/waveform_strategy_bar.gd" id="3_2bkam"]
 
-[sub_resource type="Resource" id="Resource_01yjt"]
+[sub_resource type="Resource" id="Resource_68pip"]
 script = ExtResource("3_2bkam")
 metadata/_custom_type_script = "uid://bmasr7j56qsvb"
 
@@ -17,13 +17,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bywck")
 panel = NodePath("AudioPlayerPanel")
-wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/hello.wav"
+wav_path = "C:/Users/Sina/Documents/Coding/Godot projects/sounds/assets/gruesome society.wav"
 
 [node name="AudioPlayerPanel" parent="." unique_id=377076492 instance=ExtResource("2_7lrsu")]
 layout_mode = 1
 
 [node name="WaveformRenderer" parent="AudioPlayerPanel/MarginContainer/Layout/HBoxContainer/WaveformView" parent_id_path=PackedInt32Array(377076492, 1042216897) index="0" unique_id=1634075723]
-resolution_scale = 0.1
-strategy = SubResource("Resource_01yjt")
+resolution_scale = 0.3
+normalize = true
+strategy = SubResource("Resource_68pip")
 
 [editable path="AudioPlayerPanel"]

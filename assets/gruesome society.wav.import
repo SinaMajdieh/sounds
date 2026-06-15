@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://clpy1wyi6m78q"
+path="res://.godot/imported/gruesome society.wav-cbde48b63a09086c5820c6170a56b6e5.sample"
+
+[deps]
+
+source_file="res://assets/gruesome society.wav"
+dest_files=["res://.godot/imported/gruesome society.wav-cbde48b63a09086c5820c6170a56b6e5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

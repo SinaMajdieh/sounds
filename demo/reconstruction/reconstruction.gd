@@ -38,7 +38,7 @@ func demo_reconstruction() -> void:
 	take_top_frequencies(selected_segment_num)
 	reconstruct()
 	audio_player.load_signal(reconstructed_signal)
-	info.update_info(source_signal, samples_per_segment, num_segments)
+	info.update_info(stft)
 
 
 func _on_slider_value_changed(value: float) -> void:
@@ -113,7 +113,7 @@ func take_top_frequencies(num: int) -> void:
 	for segment: StftSegmentResource in stft.Segments:
 		segment.Spectrum.sort_custom(
 			func(a, b):
-				if abs(a.Frequency) > (b.Frequency):
+				if abs(a.Amplitude) > (b.Amplitude):
 					return true
 				return false 
 		)
