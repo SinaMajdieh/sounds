@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cuqjmd1of802v"]
+
+[ext_resource type="Script" uid="uid://bv2rlnl2610wb" path="res://features/spectrogram/spectrogram.gd" id="1_1pcbu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kycu"]
+bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
+
+[node name="Spectrogram" type="PanelContainer" unique_id=853865588 node_paths=PackedStringArray("viewer")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kycu")
+script = ExtResource("1_1pcbu")
+viewer = NodePath("TextureRect")
+num_segments = 2048
+wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=650118246]
+layout_mode = 2
+stretch_mode = 5
