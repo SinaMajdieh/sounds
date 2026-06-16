@@ -8,14 +8,33 @@ namespace Spectrogram;
 [GlobalClass]
 public partial class Spectrogram: RefCounted
 {
-    static public Texture2D GenerateTexture(DSP.StftResult stft)
+    public SignalResource Signal {get; private set;}
+    
+    private StftResult _stft;
+    private float _maxAmplitude;
+
+    public float Duration => Signal?.Duration ?? 0f;
+    public float MaxFrequency => _stft.Segments is { Length: > 0 } ? _stft.Segments[0].Spectrum[^1].Frequency : 0f;
+    public float MaxAmplitude => MathF.Max(_maxAmplitude, 0f);
+    
+    public Spectrogram() {}
+    
+    public void LoadSignal(SignalResource signal, int samplesPerSegment)
     {
-        int width = stft.Segments.Length;
-        int height = stft.Segments[0].Spectrum.Length;
-
-        float maxAmplitude = 0f;
-        float maxFrequency = stft.Segments[0].Spectrum[height - 1].Frequency;
-
+        Signal = signal;
+        _stft = Stft.Compute(ResourceMapper.ToDomain(signal), samplesPerSegment);
+        _maxAmplitude = ComputeMaxAmplitude();
+    }
+    
+    public Texture2D GenerateTexture()
+    {
+        if (_stft.Segments is not { Length: > 0 })
+        {
+            GD.PushError("GenerateTexture called before LoadSignal or STFT is empty.");
+            return null;
+        }
+        int width = _stft.Segments.Length;
+        int height = _stft.Segments[0].Spectrum.Length;
         int pixelCount = width * height;
 
         byte[] buffer = new byte[pixelCount * sizeof(float)];
@@ -24,15 +43,12 @@ public partial class Spectrogram: RefCounted
 
         for (int time = 0; time < width; time++)
         {
-            var spectrum = stft.Segments[time].Spectrum;
+            var spectrum = _stft.Segments[time].Spectrum;
 
             for (int frequency = 0; frequency < spectrum.Length; frequency++)
             {
                 float amplitude = spectrum[frequency].Amplitude;
-                amplitude = MathF.Log10(1f + amplitude * 100f);
-                
-                if (amplitude > maxAmplitude)
-                    maxAmplitude = amplitude;
+                amplitude = LogTransform(amplitude);
                 
                 int index = (height - 1 - frequency) * width + time;
                 pixels[index] = amplitude;
@@ -49,8 +65,18 @@ public partial class Spectrogram: RefCounted
 
         return ImageTexture.CreateFromImage(image);
     }
-    public static Texture2D GenerateTexture(StftResultResource stft)
+
+    private float ComputeMaxAmplitude()
     {
-        return GenerateTexture(DSP.ResourceMapper.ToDomain(stft));
+        float max = 0f;
+        foreach (var segment in _stft.Segments)
+            foreach (var bin in segment.Spectrum)
+            {
+                float v = LogTransform(bin.Amplitude);
+                if (v > max) max = v;
+            }
+        return max;
     }
+
+    private static float LogTransform(float amplitude) => MathF.Log10(1f + amplitude * 100f);
 }

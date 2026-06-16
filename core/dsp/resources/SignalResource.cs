@@ -9,12 +9,13 @@ public partial class SignalResource : Resource
     public float[] Samples { get; set; }
 
     [Export]
+
     public int SampleRate { get; set; }
 
     [Export]
     public int SampleCount { get; set; }
 
-    public float Duration => SampleCount <= 0 ? 0f : SampleCount / SampleRate;
+    public float Duration => SampleCount <= 0 ? 0f : SampleCount / (float)SampleRate;
 
     public SignalResource() { }
 

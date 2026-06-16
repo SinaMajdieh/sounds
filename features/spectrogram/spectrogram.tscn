@@ -1,11 +1,22 @@
 [gd_scene format=3 uid="uid://cuqjmd1of802v"]
 
 [ext_resource type="Script" uid="uid://bv2rlnl2610wb" path="res://features/spectrogram/spectrogram.gd" id="1_1pcbu"]
+[ext_resource type="Gradient" uid="uid://bfx1ynprfv3xr" path="res://assets/gradients/spectrogram.tres" id="2_qd3ae"]
+[ext_resource type="Shader" uid="uid://dl1w8tlbq7v30" path="res://features/spectrogram/spectrogram.gdshader" id="2_sl8tn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kycu"]
 bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
 
-[node name="Spectrogram" type="PanelContainer" unique_id=853865588 node_paths=PackedStringArray("viewer")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qd3ae"]
+shader = ExtResource("2_sl8tn")
+shader_parameter/display_seconds = 2.0
+shader_parameter/display_frequency = 14000.0
+shader_parameter/total_seconds = 10.0
+shader_parameter/max_frequency = 22050.0
+shader_parameter/max_amplitude = 0.0
+shader_parameter/normalize = false
+
+[node name="Spectrogram" type="PanelContainer" unique_id=853865588 node_paths=PackedStringArray("canvas")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,10 +24,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7kycu")
 script = ExtResource("1_1pcbu")
-viewer = NodePath("TextureRect")
-num_segments = 2048
+canvas = NodePath("Canvas")
+num_segments = 1024
+gradient = ExtResource("2_qd3ae")
+display_frequency = 10000.0
 wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=650118246]
+[node name="Canvas" type="ColorRect" parent="." unique_id=1682418672]
+material = SubResource("ShaderMaterial_qd3ae")
 layout_mode = 2
-stretch_mode = 5
+color = Color(0.7294118, 0.7607843, 0.87058824, 1)
