@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bywck")
 panel = NodePath("AudioPlayerPanel")
-wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
+wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/hello.wav"
 
 [node name="AudioPlayerPanel" parent="." unique_id=377076492 instance=ExtResource("2_7lrsu")]
 layout_mode = 1

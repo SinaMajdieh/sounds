@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://krgwjx6e2src"
-path="res://.godot/imported/Inter-VariableFont_opsz,wght.ttf-b5d8f3173c27a2ed7f2a6fd171ddcc8c.fontdata"
+path="res://.godot/imported/Inter-VariableFont_opsz,wght.ttf-5aa0b84b3b466637e9155833056ad3cd.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/inter/Inter-VariableFont_opsz,wght.ttf"
-dest_files=["res://.godot/imported/Inter-VariableFont_opsz,wght.ttf-b5d8f3173c27a2ed7f2a6fd171ddcc8c.fontdata"]
+source_file="res://assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf"
+dest_files=["res://.godot/imported/Inter-VariableFont_opsz,wght.ttf-5aa0b84b3b466637e9155833056ad3cd.fontdata"]
 
 [params]
 

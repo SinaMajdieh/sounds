@@ -8,7 +8,7 @@ class_name Axis extends Control
 @export var orientation: Orientation = Orientation.HORIZONTAL
 @export var axis_color: Color = Color.WHITE
 @export_subgroup("Tick")
-@export var num_ticks: float = 0.0
+@export var num_ticks: int = 0
 @export var tick_length: int = 8
 @export var tick_thickness: float = 1.5
 @export_subgroup("Label")

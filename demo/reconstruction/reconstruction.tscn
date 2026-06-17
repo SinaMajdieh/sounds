@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://l5vy5ey5h8qq"]
 
 [ext_resource type="Script" uid="uid://dqp1oe3dyoby0" path="res://demo/reconstruction/reconstruction.gd" id="1_v338x"]
-[ext_resource type="Script" uid="uid://srktrganjmej" path="res://ui/scrubber_slider.gd" id="2_0gycy"]
+[ext_resource type="Script" uid="uid://srktrganjmej" path="res://UI/scrubber_slider.gd" id="2_0gycy"]
 [ext_resource type="Script" uid="uid://cs088fmxle47e" path="res://demo/reconstruction/info.gd" id="3_0gycy"]
-[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/icons/play.svg" id="3_2m6op"]
-[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://ui/playback_button.gd" id="4_y47gu"]
-[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/icons/pause.svg" id="5_v11yo"]
+[ext_resource type="Texture2D" uid="uid://bm082xd82n4d" path="res://assets/Icons/play.svg" id="3_2m6op"]
+[ext_resource type="Script" uid="uid://bj0s20ksvrib1" path="res://UI/playback_button.gd" id="4_y47gu"]
+[ext_resource type="Texture2D" uid="uid://dbiiq6bw5jeo" path="res://assets/Icons/pause.svg" id="5_v11yo"]
 [ext_resource type="Script" uid="uid://dg3pmmkrf4m7o" path="res://visualization/waveform/renderer/waveform_renderer.gd" id="6_00o2f"]
 [ext_resource type="Script" uid="uid://dyehyenjr3ncv" path="res://visualization/waveform/strategies/waveform_strategy_continuous.gd" id="7_w3is8"]
 [ext_resource type="Script" uid="uid://bcqs201o1rc3v" path="res://visualization/playback_cursor/active/active_cursor.gd" id="8_wns8s"]
@@ -57,8 +57,8 @@ audio_player = NodePath("BufferPlayer")
 info = NodePath("MarginContainer/Layout/Info")
 slider_label = NodePath("MarginContainer/Layout/Segments/SegmentsLabel")
 slider = NodePath("MarginContainer/Layout/Segments/Scrubber")
-num_segments = 200
-wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
+num_segments = 250
+wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/gruesome society.wav"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=309782361]
 layout_mode = 2

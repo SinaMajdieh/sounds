@@ -2,6 +2,7 @@ class_name SpectrogramRenderer extends Control
 
 @export_category("Elements")
 @export var canvas: Control
+@export var axes: Node
 
 @export_category("Data")
 @export var num_segments: int = 1
@@ -26,6 +27,7 @@ func _ready() -> void:
 	_gradient_texture = _get_gradient()
 	_spectrogram_texture = spectrogram.GenerateTexture()
 	update_shader()
+	update_axes()
 
 
 func _open_wav() -> SignalResource:
@@ -62,6 +64,11 @@ func _get_gradient() -> GradientTexture1D:
 	texture.gradient = gradient
 	# texture.width = 256
 	return texture
+
+
+func update_axes() -> void:
+	axes.update_time_axis(display_seconds)
+	axes.update_frequency_axis(display_frequency)
 
 
 func update_shader() -> void:
