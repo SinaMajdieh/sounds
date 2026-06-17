@@ -48,10 +48,10 @@ public partial class Spectrogram: RefCounted
             for (int frequency = 0; frequency < spectrum.Length; frequency++)
             {
                 float amplitude = spectrum[frequency].Amplitude;
-                amplitude = LogTransform(amplitude);
+                float normalized = amplitude / MaxAmplitude;
                 
                 int index = (height - 1 - frequency) * width + time;
-                pixels[index] = amplitude;
+                pixels[index] = normalized;
             }
         }
 
@@ -72,11 +72,8 @@ public partial class Spectrogram: RefCounted
         foreach (var segment in _stft.Segments)
             foreach (var bin in segment.Spectrum)
             {
-                float v = LogTransform(bin.Amplitude);
-                if (v > max) max = v;
+                if (bin.Amplitude > max) max = bin.Amplitude;
             }
         return max;
     }
-
-    private static float LogTransform(float amplitude) => MathF.Log10(1f + amplitude * 100f);
 }

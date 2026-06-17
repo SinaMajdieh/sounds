@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bv2rlnl2610wb" path="res://features/spectrogram/spectrogram.gd" id="1_1pcbu"]
 [ext_resource type="Gradient" uid="uid://bfx1ynprfv3xr" path="res://assets/gradients/spectrogram.tres" id="2_qd3ae"]
 [ext_resource type="Shader" uid="uid://dl1w8tlbq7v30" path="res://features/spectrogram/spectrogram.gdshader" id="2_sl8tn"]
+[ext_resource type="Script" uid="uid://cpsa3l8l4wodm" path="res://ui/axis/axis.gd" id="4_a20jk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kycu"]
 bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
@@ -15,6 +16,8 @@ shader_parameter/total_seconds = 10.0
 shader_parameter/max_frequency = 22050.0
 shader_parameter/max_amplitude = 0.0
 shader_parameter/normalize = false
+shader_parameter/min_db = -80.0
+shader_parameter/max_db = 0.0
 
 [node name="Spectrogram" type="PanelContainer" unique_id=853865588 node_paths=PackedStringArray("canvas")]
 anchors_preset = 15
@@ -24,13 +27,45 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7kycu")
 script = ExtResource("1_1pcbu")
-canvas = NodePath("Canvas")
-num_segments = 1024
+canvas = NodePath("CanvasContainer/Canvas")
+num_segments = 2048
 gradient = ExtResource("2_qd3ae")
-display_frequency = 10000.0
 wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
 
-[node name="Canvas" type="ColorRect" parent="." unique_id=1682418672]
-material = SubResource("ShaderMaterial_qd3ae")
+[node name="CanvasContainer" type="Control" parent="." unique_id=1477471381]
 layout_mode = 2
-color = Color(0.7294118, 0.7607843, 0.87058824, 1)
+
+[node name="Canvas" type="ColorRect" parent="CanvasContainer" unique_id=1682418672]
+material = SubResource("ShaderMaterial_qd3ae")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TimeAxis" type="Control" parent="CanvasContainer" unique_id=848175000]
+layout_mode = 1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.95
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+script = ExtResource("4_a20jk")
+axis_color = Color(0.8039216, 0.8392157, 0.95686275, 1)
+
+[node name="FrequencyAxis" type="Control" parent="CanvasContainer" unique_id=755796073]
+layout_mode = 1
+anchor_top = 0.05
+anchor_right = 0.05
+anchor_bottom = 0.95
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("4_a20jk")
+orientation = 1
+axis_color = Color(0.8039216, 0.8392157, 0.95686275, 1)

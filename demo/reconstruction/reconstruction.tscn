@@ -58,8 +58,7 @@ info = NodePath("MarginContainer/Layout/Info")
 slider_label = NodePath("MarginContainer/Layout/Segments/SegmentsLabel")
 slider = NodePath("MarginContainer/Layout/Segments/Scrubber")
 num_segments = 200
-selected_segment_num = 100
-wav_path = "C:/Users/Sina/Documents/Coding/Godot projects/sounds/assets/gruesome society.wav"
+wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=309782361]
 layout_mode = 2
