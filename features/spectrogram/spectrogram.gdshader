@@ -5,7 +5,6 @@ uniform float display_frequency;
 uniform float total_seconds;
 uniform float max_frequency;
 uniform float max_amplitude;
-uniform bool normalize = false;
 
 // dB range for perceptual mapping
 uniform float min_db = -80.0;

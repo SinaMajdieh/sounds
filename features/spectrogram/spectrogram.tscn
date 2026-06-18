@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://bv2rlnl2610wb" path="res://features/spectrogram/spectrogram.gd" id="1_1pcbu"]
 [ext_resource type="Gradient" uid="uid://bfx1ynprfv3xr" path="res://assets/gradients/spectrogram.tres" id="2_qd3ae"]
 [ext_resource type="Shader" uid="uid://dl1w8tlbq7v30" path="res://features/spectrogram/spectrogram.gdshader" id="2_sl8tn"]
-[ext_resource type="Script" uid="uid://cpsa3l8l4wodm" path="res://UI/axis/axis.gd" id="4_a20jk"]
+[ext_resource type="Script" uid="uid://cpsa3l8l4wodm" path="res://ui/axis/axis.gd" id="4_a20jk"]
 [ext_resource type="Script" uid="uid://8835khxo6jhe" path="res://features/spectrogram/axes.gd" id="5_okm5n"]
+[ext_resource type="Script" uid="uid://cildu7twcmhx3" path="res://features/playback/buffer_player.gd" id="6_58sos"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kycu"]
 bg_color = Color(0.09411765, 0.09411765, 0.14509805, 1)
@@ -16,11 +17,10 @@ shader_parameter/display_frequency = 14000.0
 shader_parameter/total_seconds = 10.0
 shader_parameter/max_frequency = 22050.0
 shader_parameter/max_amplitude = 0.0
-shader_parameter/normalize = false
 shader_parameter/min_db = -80.0
 shader_parameter/max_db = 0.0
 
-[node name="Spectrogram" type="PanelContainer" unique_id=853865588 node_paths=PackedStringArray("canvas", "axes")]
+[node name="Spectrogram" type="PanelContainer" unique_id=853865588 node_paths=PackedStringArray("audio_player", "canvas", "axes")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,11 +28,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7kycu")
 script = ExtResource("1_1pcbu")
+reconstruction_region_bottom_right = Vector2(10, 10)
+audio_player = NodePath("BufferPlayer")
 canvas = NodePath("CanvasContainer/Canvas")
 axes = NodePath("AxesManager")
 num_segments = 2048
 gradient = ExtResource("2_qd3ae")
-wav_path = "C:/Users/HighEnd/Documents/Coding/Godot/sounds/assets/hello.wav"
+wav_path = "C:/Users/Sina/Documents/Sound Recordings/Recording (4).wav"
 
 [node name="CanvasContainer" type="Control" parent="." unique_id=1477471381]
 layout_mode = 2
@@ -78,3 +80,8 @@ label_font_size = 16
 script = ExtResource("5_okm5n")
 frequency_axis = NodePath("../CanvasContainer/FrequencyAxis")
 time_axis = NodePath("../CanvasContainer/TimeAxis")
+
+[node name="BufferPlayer" type="Node" parent="." unique_id=220851304]
+script = ExtResource("6_58sos")
+buffer_length = 0.1
+metadata/_custom_type_script = "uid://cildu7twcmhx3"

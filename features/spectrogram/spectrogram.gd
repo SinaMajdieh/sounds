@@ -1,12 +1,19 @@
 class_name SpectrogramRenderer extends Control
 
+@export_category("Test")
+@export_subgroup("Data")
+@export var reconstruction_region_top_left: Vector2 = Vector2.ZERO
+@export var reconstruction_region_bottom_right: Vector2 = Vector2.ONE
+@export_subgroup("Elements")
+@export var audio_player: BufferPlayer
+
+
 @export_category("Elements")
 @export var canvas: Control
 @export var axes: Node
 
 @export_category("Data")
 @export var num_segments: int = 1
-@export var normalize_amplitude: bool = false
 
 @export_category("Shader")
 @export var gradient: Gradient
@@ -28,6 +35,23 @@ func _ready() -> void:
 	_spectrogram_texture = spectrogram.GenerateTexture()
 	update_shader()
 	update_axes()
+	_test_play_reconstructed()
+
+
+func _test_play_reconstructed() -> void:
+	audio_player.load_signal(spectrogram.ReconstructTextureRegion(
+		reconstruction_region_top_left, 
+		reconstruction_region_bottom_right
+	))
+	audio_player.play()
+
+
+func _test_set_amplitude() -> void:
+	for i in range(int(num_segments / 2.0)):
+		for j in range(display_frequency):
+			spectrogram.SetAmplitude(i, j, 1.0)
+	_spectrogram_texture = spectrogram.GenerateTexture()
+	update_shader()
 
 
 func _open_wav() -> SignalResource:
@@ -82,7 +106,6 @@ func update_shader() -> void:
 
 	mat.set_shader_parameter("spectrogram_texture", _spectrogram_texture)
 	mat.set_shader_parameter("gradient_texture", _gradient_texture)
-	mat.set_shader_parameter("normalize", normalize_amplitude)
 	mat.set_shader_parameter("max_amplitude", spectrogram.MaxAmplitude)
 	mat.set_shader_parameter("max_frequency", spectrogram.MaxFrequency)
 	mat.set_shader_parameter("display_frequency", display_frequency)
